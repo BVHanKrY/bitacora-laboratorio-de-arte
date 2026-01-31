@@ -1,290 +1,232 @@
+<!-- PARTE 1/2 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bitácora Segundo Semestre | UArtes</title>
+<title>Bitácora Segundo Semestre</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --paper:#fffaf2;
-  --stroke:#e7cfad;
-  --text:#2f2f2f;
-  --muted:#6b6b6b;
-  --accent:#b76a2b;
-  --shadow:0 10px 30px rgba(0,0,0,.1);
-  --radius:16px;
-}
-
-*{box-sizing:border-box}
-
 body{
   margin:0;
-  font-family:'Roboto',sans-serif;
-  color:var(--text);
+  font-family:Roboto,sans-serif;
   background:#f8f3e0;
 }
 
 header{
   position:sticky;
   top:0;
-  background:rgba(242,213,168,.8);
-  border-bottom:1px solid var(--stroke);
-  z-index:10;
+  background:#f2d5a8;
+  padding:12px;
 }
 
-.header-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:14px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.brand h1{margin:0;font-size:18px}
-.brand p{margin:0;font-size:13px;color:var(--muted)}
-
-.nav a{
-  font-size:12px;
-  padding:8px 10px;
-  margin-left:6px;
-  text-decoration:none;
-  border:1px solid var(--stroke);
-  border-radius:999px;
-  color:var(--text);
-  background:var(--paper);
-}
-
-.page{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-
-.hero{
-  background:var(--paper);
-  padding:20px;
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
+.page{max-width:1200px;margin:auto;padding:20px}
 
 .container{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:18px;
-  margin-top:20px;
+  gap:16px;
 }
 
 .card{
   background:#fff;
   padding:14px;
-  border-radius:18px;
-  box-shadow:var(--shadow);
+  border-radius:16px;
 }
 
-.badge{
-  font-size:11px;
-  background:var(--paper);
-  padding:4px 8px;
-  border-radius:999px;
-  display:inline-block;
-}
+.card img{width:100%;border-radius:12px}
 
-.card img{
-  width:100%;
-  border-radius:12px;
-  margin:10px 0;
-}
+.badge{font-size:12px}
 
-.side{
-  position:fixed;
-  right:16px;
-  top:120px;
+.controls{
   display:flex;
-  flex-direction:column;
-  gap:10px;
+  gap:8px;
+  margin-top:10px;
 }
 
-.side button{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  border:1px solid var(--stroke);
-  background:#fff;
+button{
   cursor:pointer;
+}
+
+.top-bar{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+input[type="search"]{
+  flex:1;
+  padding:8px;
 }
 
 .fab{
   position:fixed;
-  right:26px;
-  bottom:26px;
+  bottom:20px;
+  right:20px;
+  font-size:32px;
+  border-radius:50%;
   width:60px;
   height:60px;
-  border-radius:50%;
-  font-size:32px;
-  background:#1f8f7a;
-  color:#fff;
-  border:none;
-  cursor:pointer;
 }
-
 .modal{
   position:fixed;
   inset:0;
   background:rgba(0,0,0,.4);
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 }
-
 .hidden{display:none}
-
 .modal-content{
   background:#fff;
   padding:20px;
-  border-radius:16px;
-  width:320px;
-}
-
-.modal-content input,
-.modal-content textarea{
-  width:100%;
-  margin-bottom:10px;
-}
-
-.btn{
-  padding:8px 12px;
   border-radius:12px;
-  border:1px solid var(--stroke);
-  background:var(--paper);
-  cursor:pointer;
-}
-
-.btn.primary{
-  background:rgba(183,106,43,.15);
+  width:320px;
 }
 </style>
 </head>
 
 <body>
 
-<aside class="side">
-  <button title="Buscar">🔍</button>
-  <button title="Compartir">↗</button>
-  <button title="Notificaciones">🔔</button>
-  <button title="Ajustes">⚙</button>
-</aside>
-
-<button class="fab" id="btnNewPost">+</button>
-
 <header>
-  <div class="header-inner">
-    <div class="brand">
-      <h1>Bitácora Segundo Semestre</h1>
-      <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
-    </div>
-    <nav class="nav">
-      <a href="#cards">Semanas</a>
-    </nav>
-  </div>
+  <h2>Bitácora Segundo Semestre</h2>
 </header>
 
 <main class="page">
-  <section class="hero">
-    <h2>Registro semanal del proceso</h2>
-    <p>Apuntes, reflexiones y evidencias del segundo semestre.</p>
-  </section>
 
-  <section>
-    <div class="container" id="cards"></div>
-  </section>
+<div class="top-bar">
+  <input type="search" id="searchInput" placeholder="Buscar por semana o texto">
+  <button id="exportJSON">Exportar JSON</button>
+  <button onclick="window.print()">Exportar PDF</button>
+</div>
+
+<div class="container" id="cards"></div>
+
 </main>
 
-<footer style="text-align:center;padding:20px;color:#6b6b6b">
-  Proyecto académico · Universidad de las Artes
-</footer>
+<button class="fab" id="newPost">+</button>
 
 <div class="modal hidden" id="modal">
   <div class="modal-content">
-    <h3>Nuevo registro</h3>
+    <h3 id="modalTitle">Nuevo registro</h3>
 
-    <label>Semana</label>
-    <input type="number" id="weekInput" min="1" max="16">
+    <input type="number" id="weekInput" placeholder="Semana">
+    <textarea id="textInput" placeholder="Texto"></textarea>
+    <input type="file" id="imgInput">
 
-    <label>Texto</label>
-    <textarea id="textInput"></textarea>
-
-    <label>Evidencia (imagen)</label>
-    <input type="file" id="imgInput" accept="image/*">
-
-    <div style="display:flex;gap:10px;justify-content:flex-end">
-      <button class="btn" id="closeModal">Cancelar</button>
-      <button class="btn primary" id="savePost">Guardar</button>
+    <div class="controls">
+      <button id="save">Guardar</button>
+      <button id="cancel">Cancelar</button>
     </div>
   </div>
 </div>
-
 <script>
 const cards = document.getElementById("cards");
 const modal = document.getElementById("modal");
-const btnNew = document.getElementById("btnNewPost");
-const btnClose = document.getElementById("closeModal");
-const btnSave = document.getElementById("savePost");
+const newPost = document.getElementById("newPost");
+const saveBtn = document.getElementById("save");
+const cancelBtn = document.getElementById("cancel");
+const searchInput = document.getElementById("searchInput");
+const exportJSON = document.getElementById("exportJSON");
 
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
+let editingIndex = null;
 
-function render(){
-  cards.innerHTML = "";
-  posts.forEach(p=>{
-    const card = document.createElement("article");
-    card.className = "card";
-    card.innerHTML = `
-      <span class="badge">Semana ${p.week}</span>
-      <h3>Semana ${p.week}</h3>
-      <p>${p.text}</p>
-      ${p.img ? `<img src="${p.img}">` : ""}
-    `;
-    cards.appendChild(card);
-  });
+function saveStorage(){
+  localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-btnNew.onclick = ()=> modal.classList.remove("hidden");
-btnClose.onclick = ()=> modal.classList.add("hidden");
+function render(filter=""){
+  cards.innerHTML="";
+  posts
+    .filter(p =>
+      p.text.toLowerCase().includes(filter) ||
+      String(p.week).includes(filter)
+    )
+    .forEach((p,i)=>{
+      const el = document.createElement("div");
+      el.className="card";
+      el.innerHTML=`
+        <span class="badge">Semana ${p.week}</span>
+        <p>${p.text}</p>
+        ${p.img ? `<img src="${p.img}">` : ""}
+        <div class="controls">
+          <button onclick="editPost(${i})">Editar</button>
+          <button onclick="deletePost(${i})">Borrar</button>
+        </div>
+      `;
+      cards.appendChild(el);
+    });
+}
 
-btnSave.onclick = ()=>{
-  const week = weekInput.value;
-  const text = textInput.value;
-  const file = imgInput.files[0];
+function editPost(i){
+  editingIndex=i;
+  const p=posts[i];
+  weekInput.value=p.week;
+  textInput.value=p.text;
+  modal.classList.remove("hidden");
+}
 
-  if(!week || !text){
-    alert("Completa los campos");
-    return;
+function deletePost(i){
+  if(confirm("¿Borrar esta semana?")){
+    posts.splice(i,1);
+    saveStorage();
+    render(searchInput.value.toLowerCase());
   }
+}
+
+newPost.onclick=()=>{
+  editingIndex=null;
+  weekInput.value="";
+  textInput.value="";
+  modal.classList.remove("hidden");
+};
+
+cancelBtn.onclick=()=>modal.classList.add("hidden");
+
+saveBtn.onclick=()=>{
+  const week=weekInput.value;
+  const text=textInput.value;
+  const file=imgInput.files[0];
+
+  if(!week||!text)return alert("Completa los campos");
+
+  const saveData=(img)=>{
+    const data={week,text,img};
+    if(editingIndex!==null){
+      posts[editingIndex]=data;
+    }else{
+      posts.push(data);
+    }
+    saveStorage();
+    modal.classList.add("hidden");
+    render(searchInput.value.toLowerCase());
+  };
 
   if(file){
-    const reader = new FileReader();
-    reader.onload = ()=>{
-      posts.push({week,text,img:reader.result});
-      localStorage.setItem("posts",JSON.stringify(posts));
-      modal.classList.add("hidden");
-      render();
-    };
-    reader.readAsDataURL(file);
+    const r=new FileReader();
+    r.onload=()=>saveData(r.result);
+    r.readAsDataURL(file);
   }else{
-    posts.push({week,text,img:null});
-    localStorage.setItem("posts",JSON.stringify(posts));
-    modal.classList.add("hidden");
-    render();
+    saveData(null);
   }
+};
+
+searchInput.oninput=()=>{
+  render(searchInput.value.toLowerCase());
+};
+
+exportJSON.onclick=()=>{
+  const blob=new Blob([JSON.stringify(posts,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="bitacora.json";
+  a.click();
 };
 
 render();
 </script>
-
 </body>
 </html>
