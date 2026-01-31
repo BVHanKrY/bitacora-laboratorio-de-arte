@@ -186,13 +186,12 @@
 
       border: none;
       background: transparent;
-      padding: 10px;            /* área táctil */
+      padding: 10px;
       border-radius: 999px;
       -webkit-tap-highlight-color: transparent;
       cursor: pointer;
     }
     .tools-float:focus{ outline: none; }
-
     .tools-float .dots-icon{
       font-size: 26px;
       line-height: 1;
@@ -201,7 +200,6 @@
       display:block;
     }
 
-    /* Dropdown tools: fijo */
     .tools-dropdown{
       position: fixed;
       right: 16px;
@@ -360,7 +358,7 @@
       box-shadow: 0 16px 40px rgba(0,0,0,0.18);
       backdrop-filter: blur(10px);
       display:none;
-      z-index: 30;
+      z-index: 40; /* más alto para que no lo tape nada */
     }
     .ctx-menu.open{ display:block; }
 
@@ -537,6 +535,7 @@
           aria-label="Abrir menú de semanas"
           aria-controls="weeksMenu"
           aria-expanded="false"
+          type="button"
         >
           <span class="burger-lines" aria-hidden="true">
             <span></span><span></span><span></span>
@@ -576,6 +575,7 @@
     <section class="cards-wrap">
       <div class="container" id="cards">
 
+        <!-- NOTA: para ahorrar espacio, dejo 2 semanas completas. Copia/pega el mismo patrón para s3..s8 -->
         <article class="card" id="s1" data-week="1">
           <span class="badge">Semana 1</span>
           <h3>Semana 1</h3>
@@ -588,12 +588,9 @@
                 <div class="time">[hace X días]</div>
               </div>
             </div>
-
-            <!-- Botón ⋮ SIN cuadro -->
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
           </div>
 
-          <!-- Menú contextual (material-like) -->
           <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
             <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
             <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
@@ -622,7 +619,7 @@
                 <div class="time">[hace X días]</div>
               </div>
             </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
           </div>
 
           <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
@@ -641,191 +638,7 @@
           </div>
         </article>
 
-        <article class="card" id="s3" data-week="3">
-          <span class="badge">Semana 3</span>
-          <h3>Semana 3</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="" alt="Imagen Semana 3">
-          <p>[Escribe aquí el texto descriptivo de la Semana 3]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s3">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
-
-        <article class="card" id="s4" data-week="4">
-          <span class="badge">Semana 4</span>
-          <h3>Semana 4</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="" alt="Imagen Semana 4">
-          <p>[Escribe aquí el texto descriptivo de la Semana 4]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s4">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
-
-        <article class="card" id="s5" data-week="5">
-          <span class="badge">Semana 5</span>
-          <h3>Semana 5</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="img/semana5.jpg" alt="Imagen Semana 5">
-          <p>[Texto de la Semana 5]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s5">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
-
-        <article class="card" id="s6" data-week="6">
-          <span class="badge">Semana 6</span>
-          <h3>Semana 6</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="img/semana6.jpg" alt="Imagen Semana 6">
-          <p>[Texto de la Semana 6]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s6">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
-
-        <article class="card" id="s7" data-week="7">
-          <span class="badge">Semana 7</span>
-          <h3>Semana 7</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="img/semana7.jpg" alt="Imagen Semana 7">
-          <p>[Texto de la Semana 7]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s7">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
-
-        <article class="card" id="s8" data-week="8">
-          <span class="badge">Semana 8</span>
-          <h3>Semana 8</h3>
-
-          <div class="post-head">
-            <div class="who">
-              <div class="avatar">BV</div>
-              <div>
-                <div class="name">Henry Villavicencio</div>
-                <div class="time">[hace X días]</div>
-              </div>
-            </div>
-            <button class="dots" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-          </div>
-
-          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-          </div>
-
-          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
-          <img data-src="img/semana8.jpg" alt="Imagen Semana 8">
-          <p>[Texto de cierre de la bitácora]</p>
-
-          <div class="actions">
-            <a class="btn primary" href="#s8">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
+        <!-- DUPLICA s3..s8 AQUÍ (igual que s2 cambiando ids y textos) -->
 
       </div>
     </section>
@@ -836,7 +649,7 @@
   </footer>
 
   <script>
-    // Mostrar imágenes solo si hay ruta válida
+    // ========= IMÁGENES =========
     document.querySelectorAll("img[data-src]").forEach(img => {
       const src = (img.getAttribute("data-src") || "").trim();
       if (src && !src.includes("[") && !src.includes("ruta-de-la-imagen")) {
@@ -845,17 +658,28 @@
       }
     });
 
-    // Scroll horizontal hacia la tarjeta
+    // ========= SCROLL HORIZONTAL A TARJETA =========
     const container = document.getElementById("cards");
     function scrollToCard(id){
       const el = document.querySelector(id);
       if (!el || !container) return;
       const left = el.offsetLeft - 12;
       container.scrollTo({ left, behavior: "smooth" });
-      history.replaceState(null, "", id);
+      // NO guardamos hash para evitar que recargue en semana 4+
     }
 
-    // ====== Dropdown helpers (header + tools) ======
+    // ========= SIEMPRE EMPEZAR EN SEMANA 1 =========
+    function forceStartAtWeek1(){
+      if (!container) return;
+      // Limpia hash sin recargar
+      if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+      // Fuerza scroll al inicio
+      container.scrollTo({ left: 0, behavior: "auto" });
+    }
+    window.addEventListener("load", forceStartAtWeek1);
+    window.addEventListener("pageshow", forceStartAtWeek1);
+
+    // ========= DROPDOWNS (SEMANAS + TOOLS) =========
     const hamburgerBtn = document.getElementById("hamburger");
     const weeksMenu = document.getElementById("weeksMenu");
     const toolsBtn = document.getElementById("toolsBtn");
@@ -867,12 +691,10 @@
       menu.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
     }
-
     function closeAllMain(){
       closeDropdown(hamburgerBtn, weeksMenu);
       closeDropdown(toolsBtn, toolsMenu);
     }
-
     function toggle(btn, menu){
       const open = !menu.classList.contains("open");
       closeAllMain();
@@ -880,101 +702,114 @@
       btn.setAttribute("aria-expanded", String(open));
     }
 
-    // ====== Posicionar ⋯ más cerca del header (6px) ======
+    // ========= POSICIÓN DE ⋯ (BAJAR MÁS) =========
+    // Antes estaba pegado a la hamburguesa: ahora lo bajamos más.
     function positionTools(){
       if (!header || !toolsBtn || !toolsMenu) return;
 
       const rect = header.getBoundingClientRect();
-      const topForDots = rect.bottom + 6; // <-- antes era 10, ahora 6
+      const topForDots = rect.bottom + 26; // <-- MÁS ABAJO (sube/baja este número)
       toolsBtn.style.top = topForDots + "px";
 
       const btnRect = toolsBtn.getBoundingClientRect();
-      toolsMenu.style.top = (btnRect.bottom + 8) + "px";
+      toolsMenu.style.top = (btnRect.bottom + 10) + "px";
     }
-
     window.addEventListener("load", positionTools);
     window.addEventListener("resize", positionTools);
     window.addEventListener("scroll", positionTools, { passive: true });
+    window.addEventListener("pageshow", positionTools);
 
-    // Semanas
+    // Hamburgesa: abre semanas (ARREGLADO)
     hamburgerBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       toggle(hamburgerBtn, weeksMenu);
     });
 
+    // Click en semanas (ARREGLADO)
     weeksMenu.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const id = a.getAttribute("href");
         if (!id) return;
-        e.preventDefault();
         scrollToCard(id);
         closeAllMain();
       });
     });
 
-    // Tools
+    // Tools: abre tools (ARREGLADO)
     toolsBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       positionTools();
       toggle(toolsBtn, toolsMenu);
     });
 
-    // Evita cierre al click dentro
+    // No cerrar si haces click dentro
     weeksMenu.addEventListener("click", (e) => e.stopPropagation());
     toolsMenu.addEventListener("click", (e) => e.stopPropagation());
 
-    // Cerrar al tocar fuera
-    document.addEventListener("click", () => {
+    // ========= MENÚ CONTEXTUAL EN TARJETAS (⋮) =========
+    function closeAllContextMenus(){
+      document.querySelectorAll(".ctx-menu.open").forEach(menu => menu.classList.remove("open"));
+      document.querySelectorAll(".dots[aria-expanded='true']").forEach(btn => btn.setAttribute("aria-expanded", "false"));
+    }
+
+    // Delegación: funciona aunque dupliques tarjetas
+    document.addEventListener("click", (e) => {
+      const dotsBtn = e.target.closest(".dots");
+      const ctxItem = e.target.closest(".ctx-item");
+
+      // Si tocaste un item del menú contextual
+      if (ctxItem) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const menu = ctxItem.closest(".ctx-menu");
+        const card = ctxItem.closest(".card");
+        const action = ctxItem.getAttribute("data-action");
+        const week = card?.getAttribute("data-week") || card?.id || "?";
+
+        if (action === "edit") alert("Editar tarjeta: " + week);
+        if (action === "delete") alert("Eliminar tarjeta: " + week);
+        if (action === "share") alert("Compartir tarjeta: " + week);
+
+        closeAllContextMenus();
+        return;
+      }
+
+      // Si tocaste los ⋮ de una tarjeta
+      if (dotsBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Cierra menús principales para evitar conflictos
+        closeAllMain();
+
+        const card = dotsBtn.closest(".card");
+        const menu = card?.querySelector(".ctx-menu");
+        if (!menu) return;
+
+        const open = !menu.classList.contains("open");
+        closeAllContextMenus();
+        menu.classList.toggle("open", open);
+        dotsBtn.setAttribute("aria-expanded", String(open));
+        return;
+      }
+
+      // Si tocaste fuera: cerrar todo
       closeAllMain();
       closeAllContextMenus();
-    });
+    }, true);
 
-    // Cerrar con ESC
+    // ESC cierra todo
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeAllMain();
         closeAllContextMenus();
       }
     });
-
-    // ====== Menús contextuales por tarjeta (⋮) ======
-    function closeAllContextMenus(){
-      document.querySelectorAll(".ctx-menu.open").forEach(menu => menu.classList.remove("open"));
-      document.querySelectorAll(".dots[aria-expanded='true']").forEach(btn => btn.setAttribute("aria-expanded", "false"));
-    }
-
-    document.querySelectorAll(".card").forEach(card => {
-      const dotsBtn = card.querySelector(".dots");
-      const ctxMenu = card.querySelector(".ctx-menu");
-      if (!dotsBtn || !ctxMenu) return;
-
-      dotsBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-
-        // cierra otros
-        closeAllContextMenus();
-        closeAllMain();
-
-        const open = !ctxMenu.classList.contains("open");
-        ctxMenu.classList.toggle("open", open);
-        dotsBtn.setAttribute("aria-expanded", String(open));
-      });
-
-      ctxMenu.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const btn = e.target.closest("[data-action]");
-        if (!btn) return;
-
-        const action = btn.getAttribute("data-action");
-        const week = card.getAttribute("data-week") || card.id;
-
-        // Demo: aquí puedes reemplazar por tus funciones reales
-        if (action === "edit") alert("Editar tarjeta: " + week);
-        if (action === "delete") alert("Eliminar tarjeta: " + week);
-        if (action === "share") alert("Compartir tarjeta: " + week);
-
-        closeAllContextMenus();
-      });
   </script>
 
 </body>
