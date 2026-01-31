@@ -30,6 +30,7 @@
       color:var(--text);
       overflow-x:hidden;
 
+      /* Fondo ilustración + velo */
       background:
         linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
         url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
@@ -81,7 +82,7 @@
       color:var(--muted);
     }
 
-    /* ====== HAMBURGER + MENU ====== */
+    /* ====== HAMBURGER + MENU SEMANAS ====== */
     .menu-wrap{
       position: relative;
       display:flex;
@@ -242,6 +243,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    /* scrollbar */
     .container::-webkit-scrollbar{ height: 10px; }
     .container::-webkit-scrollbar-thumb{
       background: rgba(183,106,43,0.35);
@@ -407,6 +409,50 @@
     }
     .side button:hover{ background:#fff; }
 
+    /* ===== Side nav desplegable SOLO en móvil ===== */
+    .side-toggle{
+      display:none; /* por defecto oculto (desktop) */
+    }
+    .side-items{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    @media (max-width: 520px){
+      .brand h1{ font-size:16px; }
+      .card{ width: 85vw; height: 280px; }
+
+      .side{
+        top: 110px;
+        right: 10px;
+        padding: 10px;
+        border-radius: 18px;
+      }
+
+      .side-toggle{
+        display:inline-flex;
+        width:42px; height:42px;
+        border-radius: 14px;
+        border: 1px solid rgba(231,207,173,0.7);
+        background: rgba(255,255,255,0.9);
+        cursor:pointer;
+        font-size:18px;
+        align-items:center;
+        justify-content:center;
+      }
+
+      .side-items{
+        display:none;
+        margin-top:10px;
+      }
+
+      .side.open .side-items{
+        display:flex;
+      }
+    }
+
+    /* Botón flotante + */
     .fab{
       position: fixed;
       right: 26px;
@@ -436,22 +482,21 @@
       color: var(--muted);
       font-size: 13px;
     }
-
-    @media (max-width: 520px){
-      .brand h1{ font-size:16px; }
-      .side{ top: 120px; right: 10px; }
-      .card{ width: 85vw; height: 280px; }
-    }
   </style>
 </head>
 
 <body>
 
-  <aside class="side">
-    <button title="Buscar">🔍</button>
-    <button title="Compartir">↗</button>
-    <button title="Notificaciones">🔔</button>
-    <button title="Ajustes">⚙</button>
+  <!-- Side nav: desktop normal; móvil desplegable -->
+  <aside class="side" id="sideNav">
+    <button class="side-toggle" id="sideToggle" title="Menú" aria-label="Abrir menú" aria-expanded="false">☰</button>
+
+    <div class="side-items" id="sideItems">
+      <button title="Buscar">🔍</button>
+      <button title="Compartir">↗</button>
+      <button title="Notificaciones">🔔</button>
+      <button title="Ajustes">⚙</button>
+    </div>
   </aside>
 
   <button class="fab" title="Nuevo post">+</button>
@@ -463,7 +508,7 @@
         <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
       </div>
 
-      <!-- HAMBURGUESA (arriba derecha) -->
+      <!-- Hamburguesa semanas (arriba derecha) -->
       <div class="menu-wrap">
         <button
           class="hamburger"
@@ -637,7 +682,7 @@
       }
     });
 
-    // ====== Scroll horizontal hacia la tarjeta (reutilizable) ======
+    // ====== Scroll horizontal hacia la tarjeta ======
     const container = document.getElementById("cards");
     function scrollToCard(id){
       const el = document.querySelector(id);
@@ -647,7 +692,7 @@
       history.replaceState(null, "", id);
     }
 
-    // ====== Hamburguesa desplegable ======
+    // ====== Hamburguesa semanas ======
     const hamburger = document.getElementById("hamburger");
     const dropdown = document.getElementById("weeksMenu");
 
@@ -657,12 +702,11 @@
     }
 
     hamburger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const open = !dropdown.classList.contains("open");
-      setMenu(open);
-    });
+  e.stopPropagation();
+  const open = !dropdown.classList.contains("open");
+  setMenu(open);
+});
 
-    // Click en una semana => scroll + cerrar menú
     dropdown.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const id = a.getAttribute("href");
@@ -673,20 +717,55 @@
       });
     });
 
-    // Cerrar al hacer click fuera
     document.addEventListener("click", () => setMenu(false));
-
-    // Cerrar con ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setMenu(false);
     });
 
-    // Si entras con hash en URL, mueve al cargar
     window.addEventListener("load", () => {
       if (location.hash && document.querySelector(location.hash)) {
         scrollToCard(location.hash);
       }
     });
+
+    // ===== Side nav desplegable SOLO en móvil =====
+    const sideNav = document.getElementById("sideNav");
+    const sideToggle = document.getElementById("sideToggle");
+
+    function isMobile(){
+      return window.matchMedia("(max-width: 520px)").matches;
+    }
+
+    function closeSide(){
+      if (!sideNav) return;
+      sideNav.classList.remove("open");
+      if (sideToggle) sideToggle.setAttribute("aria-expanded", "false");
+    }
+
+    if (sideToggle && sideNav){
+      sideToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!isMobile()) return;
+
+        const open = !sideNav.classList.contains("open");
+        sideNav.classList.toggle("open", open);
+        sideToggle.setAttribute("aria-expanded", String(open));
+      });
+
+      document.addEventListener("click", () => {
+        if (isMobile()) closeSide();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeSide();
+      });
+
+      window.addEventListener("resize", () => {
+        if (!isMobile()) {
+          closeSide();
+        }
+      });
+    }
   </script>
 
 </body>
