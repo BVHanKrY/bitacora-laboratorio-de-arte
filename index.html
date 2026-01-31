@@ -1025,22 +1025,32 @@
     // Usa links RAW (directos). Ejemplo:
     // https://raw.githubusercontent.com/USUARIO/REPO/main/Media/Semana9/audio1.mp3
     const MEDIA_LIBRARY = {
-      9: {
-        audio: [
-          { title: "Audio 1 · Semana 9", url: "audios/sonido pingullo.wav" },
-          { title: "Audio 2 · Semana 9", url: "audios/piano.wav" }
-        ],
-        video: [
-          { title: "Video 1 · Semana 9", url: "PEGA_AQUI_TU_LINK_RAW.mp4" }
-        ]
-      },
-      10: { audio: [], video: [] },
-      11: { audio: [], video: [] },
-      12: { audio: [], video: [] },
-      13: { audio: [], video: [] },
-      14: { audio: [], video: [] },
-      15: { audio: [], video: [] },
-      16: { audio: [], video: [] }
+      9: {audio: [{ title: "Audio 1 · Pingullo", url: "audios/sonido pingullo.wav" },
+                  { title: "Audio 2 · Piano", url: "audios/piano.wav" }],
+          video: []},
+      
+      10: {audio: [{title: "Audio 1 .", url:" " }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      11: {audio: [{title: "Audio 1 .", url:" " }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      12: {audio: [{title: "Audio 1 · Aplausos y Golpes", url:"audios/aplausos.wav" }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      13: {audio: [{title: "Audio 1 .", url:" " }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      14: {audio: [{title: "Audio 1 . Calle Pirotecnia", url:"audios/pirotecnia en la calle 1.wav" },
+                   {title: "Audio 2 · Calle Pirotecnia 2", url: "audios/pirotecnia en la calle.wav" }],
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      15: {audio: [{title: "Audio 1 . Ventilador", url:"audios/ventilador.wav" },
+                   {title: "Audio 2 · Call Center", url: "audios/call center.wav" }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
+      
+      16: {audio: [{title: "Audio 1 .", url:"audios/trabajo final.mp3" }], 
+           video: [{ title: "Video 1 ·", url:" " }]},
     };
 
     function renderMediaList(card, type){
