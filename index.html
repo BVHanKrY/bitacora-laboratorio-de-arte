@@ -565,12 +565,6 @@
         history.replaceState(null, "", id);
       });
     });
-
-    // Iniciar desde la derecha (para recorrer hacia la izquierda)
-    window.addEventListener("load", () => {
-      const c = document.getElementById("cards");
-      if (c) c.scrollLeft = c.scrollWidth;
-    });
   </script>
 
 </body>
