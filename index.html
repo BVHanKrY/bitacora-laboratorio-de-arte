@@ -396,6 +396,7 @@
       display:none;
     }
 
+    /* ✅ Texto con resumen (4 líneas) + expandible */
     .card p{
       font-size: 14px;
       line-height: 1.5;
@@ -406,6 +407,12 @@
       display:-webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
+    }
+    .card p.expanded{
+      overflow: visible;
+      display: block;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
     }
 
     .actions{
@@ -695,6 +702,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -737,6 +745,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -779,6 +788,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -821,6 +831,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -863,6 +874,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -905,6 +917,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -947,6 +960,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -989,6 +1003,7 @@
 
           <div class="actions">
             <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <button class="btn more-btn" type="button" aria-expanded="false">Ver más</button>
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
@@ -1022,34 +1037,32 @@
     });
 
     // ========= LIBRERÍA DE MEDIOS (AQUÍ PEGAS TUS LINKS) =========
-    // Usa links RAW (directos). Ejemplo:
-    // https://raw.githubusercontent.com/USUARIO/REPO/main/Media/Semana9/audio1.mp3
     const MEDIA_LIBRARY = {
       9: {audio: [{ title: "Audio 1 · Pingullo", url: "audios/sonido pingullo.wav" },
                   { title: "Audio 2 · Piano", url: "audios/piano.wav" }],
           video: []},
-      
-      10: {audio: [{title: "Audio 1 .", url:" " }], 
+
+      10: {audio: [{title: "Audio 1 .", url:" " }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
-      11: {audio: [{title: "Audio 1 .", url:" " }], 
+
+      11: {audio: [{title: "Audio 1 .", url:" " }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
-      12: {audio: [{title: "Audio 1 · Aplausos y Golpes", url:"audios/aplausos.wav" }], 
+
+      12: {audio: [{title: "Audio 1 · Aplausos y Golpes", url:"audios/aplausos.wav" }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
-      13: {audio: [{title: "Audio 1 .", url:" " }], 
+
+      13: {audio: [{title: "Audio 1 .", url:" " }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
+
       14: {audio: [{title: "Audio 1 . Calle Pirotecnia", url:"audios/pirotecnia en la calle 1.wav" },
                    {title: "Audio 2 · Calle Pirotecnia 2", url: "audios/pirotecnia en la calle.wav" }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
+
       15: {audio: [{title: "Audio 1 . Ventilador", url:"audios/ventilador.wav" },
-                   {title: "Audio 2 · Call Center", url: "audios/call center.wav" }], 
+                   {title: "Audio 2 · Call Center", url: "audios/call center.wav" }],
            video: [{ title: "Video 1 ·", url:" " }]},
-      
-      16: {audio: [{title: "Audio 1 .", url:"audios/trabajo final.mp3" }], 
+
+      16: {audio: [{title: "Audio 1 .", url:"audios/trabajo final.mp3" }],
            video: [{ title: "Video 1 ·", url:" " }]},
     };
 
@@ -1268,6 +1281,55 @@
 
       closeAllDetailsPanels();
     }, true);
+
+    // ========= VER MÁS / VER MENOS (solo aparece si hace falta) =========
+    function initReadMoreButtons(){
+      document.querySelectorAll(".card").forEach(card => {
+        const p = card.querySelector("p");
+        const btn = card.querySelector(".more-btn");
+        if (!p || !btn) return;
+
+        // Resetea estado
+        p.classList.remove("expanded");
+        btn.textContent = "Ver más";
+        btn.setAttribute("aria-expanded", "false");
+
+        // Medimos altura "clamp"
+        const clampH = p.getBoundingClientRect().height;
+
+        // Medimos altura completa (temporal)
+        p.classList.add("expanded");
+        const fullH = p.getBoundingClientRect().height;
+        p.classList.remove("expanded");
+
+        // Si no hay diferencia real, ocultamos el botón
+        const needs = (fullH - clampH) > 2; // tolerancia
+        btn.style.display = needs ? "inline-flex" : "none";
+      });
+    }
+
+    // Toggle del botón
+    document.addEventListener("click", (e) => {
+      const moreBtn = e.target.closest(".more-btn");
+      if (!moreBtn) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      const card = moreBtn.closest(".card");
+      if (!card) return;
+
+      const p = card.querySelector("p");
+      if (!p) return;
+
+      const expanded = p.classList.toggle("expanded");
+      moreBtn.textContent = expanded ? "Ver menos" : "Ver más";
+      moreBtn.setAttribute("aria-expanded", String(expanded));
+    }, true);
+
+    window.addEventListener("load", initReadMoreButtons);
+    window.addEventListener("resize", initReadMoreButtons);
+    window.addEventListener("pageshow", initReadMoreButtons);
   </script>
 </body>
 </html>
