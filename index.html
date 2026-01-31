@@ -1,232 +1,577 @@
-<!-- PARTE 1/2 -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bitácora Segundo Semestre</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bitácora Segundo Semestre | UArtes</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-<style>
-body{
-  margin:0;
-  font-family:Roboto,sans-serif;
-  background:#f8f3e0;
-}
+  <style>
+    :root{
+      --paper:#fffaf2;
+      --stroke:#e7cfad;
+      --text:#2f2f2f;
+      --muted:#6b6b6b;
+      --accent:#b76a2b;
+      --shadow: 0 10px 30px rgba(0,0,0,0.10);
+      --shadow2: 0 6px 14px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
 
-header{
-  position:sticky;
-  top:0;
-  background:#f2d5a8;
-  padding:12px;
-}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
 
-.page{max-width:1200px;margin:auto;padding:20px}
+    body{
+      margin:0;
+      font-family:'Roboto', sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
 
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-  gap:16px;
-}
+      /* Fondo ilustración + velo */
+      background:
+        linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
+        url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
+        center/cover fixed no-repeat;
+    }
 
-.card{
-  background:#fff;
-  padding:14px;
-  border-radius:16px;
-}
+    .page{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
 
-.card img{width:100%;border-radius:12px}
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(242,213,168,0.75);
+      border-bottom: 1px solid rgba(231,207,173,0.8);
+    }
 
-.badge{font-size:12px}
+    .header-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding: 14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap: wrap;
+    }
 
-.controls{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      line-height:1.1;
+    }
+    .brand h1{
+      font-size: 18px;
+      margin:0;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+    .brand p{
+      margin:0;
+      font-size:13px;
+      color:var(--muted);
+    }
 
-button{
-  cursor:pointer;
-}
+    .nav{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      font-size:12px;
+      color: var(--text);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.55);
+      transition: transform .12s ease, background .12s ease;
+      white-space:nowrap;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,250,242,0.85);
+    }
 
-.top-bar{
-  display:flex;
-  gap:10px;
-  margin-bottom:20px;
-}
+    /* Intro */
+    .hero{
+      margin-top: 18px;
+      padding: 18px;
+      background: rgba(255,250,242,0.75);
+      border: 1px solid rgba(231,207,173,0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .hero .left{
+      flex: 1 1 520px;
+      min-width: 260px;
+    }
+    .hero h2{
+      margin:0 0 8px;
+      font-size: 20px;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size: 14px;
+    }
+    .hint{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 12px;
+      background: rgba(255,247,237,0.9);
+      border: 1px dashed rgba(183,106,43,0.35);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(183,106,43,0.15);
+    }
 
-input[type="search"]{
-  flex:1;
-  padding:8px;
-}
+    /* ======= CONTENEDOR HORIZONTAL (SCROLL) ======= */
+    .cards-wrap{
+      margin-top: 18px;
+      padding: 10px 0 6px;
+    }
 
-.fab{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  font-size:32px;
-  border-radius:50%;
-  width:60px;
-  height:60px;
-}
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.4);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.hidden{display:none}
-.modal-content{
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-  width:320px;
-}
-</style>
+    .container{
+      display:flex;
+      gap: 18px;
+      overflow-x: auto;
+      padding: 18px 6px 18px;
+      align-items: stretch;
+
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* scrollbar */
+    .container::-webkit-scrollbar{ height: 10px; }
+    .container::-webkit-scrollbar-thumb{
+      background: rgba(183,106,43,0.35);
+      border-radius: 999px;
+    }
+    .container::-webkit-scrollbar-track{
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
+    }
+
+    /* ======= TARJETAS MISMO TAMAÑO ======= */
+    .card{
+      width: 360px;      /* mismo ancho */
+      height: 260px;     /* mismo alto */
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(231,207,173,0.8);
+      border-radius: 18px;
+      padding: 14px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+      position:relative;
+      overflow:hidden;
+
+      display:flex;
+      flex-direction:column;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+    }
+
+    .badge{
+      position:absolute;
+      top:12px; right:12px;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,250,242,0.75);
+      border: 1px solid rgba(231,207,173,0.9);
+      color: var(--muted);
+    }
+
+    .card h3{
+      font-size: 16px;
+      margin: 0 0 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .post-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .who{ display:flex; gap:10px; align-items:center; }
+    .avatar{
+      width:36px; height:36px;
+      border-radius:50%;
+      background: #2a2a2a;
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:13px;
+    }
+    .name{ font-weight:700; font-size:13px; }
+    .time{ font-size:12px; color:var(--muted); margin-top:2px; }
+    .dots{
+      border:none;
+      background:transparent;
+      font-size:20px;
+      cursor:pointer;
+      color:var(--muted);
+    }
+
+    .meta{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card img{
+      width:100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 6px 0 10px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.5);
+      display:none; /* se activa por JS si hay src válido */
+    }
+
+    /* texto con límite para que todas queden iguales */
+    .card p{
+      font-size: 14px;
+      line-height: 1.5;
+      margin:0 0 12px;
+      color: #3a3a3a;
+
+      overflow:hidden;
+      display:-webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:auto; /* empuja botones abajo */
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      text-decoration:none;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.85);
+      color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,250,242,1);
+    }
+    .btn.primary{
+      background: rgba(183,106,43,0.14);
+      border-color: rgba(183,106,43,0.30);
+      color: #4a2a14;
+    }
+
+    /* Panel lateral */
+    .side{
+      position: fixed;
+      right: 16px;
+      top: 140px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      padding:10px;
+      border-radius: 999px;
+      background: rgba(255,250,242,0.7);
+      border: 1px solid rgba(231,207,173,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 80;
+    }
+    .side button{
+      width:42px; height:42px;
+      border-radius: 14px;
+      border: 1px solid rgba(231,207,173,0.7);
+      background: rgba(255,255,255,0.8);
+      cursor:pointer;
+      font-size:18px;
+    }
+    .side button:hover{ background:#fff; }
+
+    /* Botón flotante + (fuera del aside) */
+    .fab{
+      position: fixed;
+      right: 26px;
+      bottom: 26px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border:none;
+      background: #1f8f7a;
+      color:#fff;
+      font-size: 34px;
+      cursor:pointer;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+      z-index: 90;
+    }
+    .fab:hover{
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    footer{
+      margin-top: 28px;
+      padding: 18px;
+      text-align:center;
+      background: rgba(242,213,168,0.70);
+      border-top: 1px solid rgba(231,207,173,0.9);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 520px){
+      .brand h1{ font-size:16px; }
+      .nav a{ font-size:11px; padding:7px 9px; }
+      .card{ width: 85vw; height: 280px; }
+      .side{ top: 120px; right: 10px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h2>Bitácora Segundo Semestre</h2>
-</header>
+  <aside class="side">
+    <button title="Buscar">🔍</button>
+    <button title="Compartir">↗</button>
+    <button title="Notificaciones">🔔</button>
+    <button title="Ajustes">⚙</button>
+  </aside>
 
-<main class="page">
+  <button class="fab" title="Nuevo post">+</button>
 
-<div class="top-bar">
-  <input type="search" id="searchInput" placeholder="Buscar por semana o texto">
-  <button id="exportJSON">Exportar JSON</button>
-  <button onclick="window.print()">Exportar PDF</button>
-</div>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Bitácora Segundo Semestre</h1>
+        <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
+      </div>
 
-<div class="container" id="cards"></div>
-
-</main>
-
-<button class="fab" id="newPost">+</button>
-
-<div class="modal hidden" id="modal">
-  <div class="modal-content">
-    <h3 id="modalTitle">Nuevo registro</h3>
-
-    <input type="number" id="weekInput" placeholder="Semana">
-    <textarea id="textInput" placeholder="Texto"></textarea>
-    <input type="file" id="imgInput">
-
-    <div class="controls">
-      <button id="save">Guardar</button>
-      <button id="cancel">Cancelar</button>
+      <nav class="nav" aria-label="Navegación por semanas">
+        <a href="#s1">Semana 1</a>
+        <a href="#s2">Semana 2</a>
+        <a href="#s3">Semana 3</a>
+        <a href="#s4">Semana 4</a>
+        <a href="#s5">Semana 5</a>
+        <a href="#s6">Semana 6</a>
+        <a href="#s7">Semana 7</a>
+        <a href="#s8">Semana 8</a>
+      </nav>
     </div>
+  </header>
+
+  <div class="page">
+    <section class="hero">
+      <div class="left">
+        <h2>Registro semanal del proceso</h2>
+        <p>
+          Este sitio recopila apuntes, reflexiones, avances y evidencias del segundo semestre.
+          Puedes desplazarte horizontalmente para recorrer las semanas o usar el menú para saltar a una.
+        </p>
+      </div>
+      <div class="hint" title="Tip">
+        <span class="dot"></span>
+        <span>Tip: arrastra lateralmente para ver más tarjetas</span>
+      </div>
+    </section>
+
+    <section class="cards-wrap">
+      <div class="container" id="cards">
+
+        <article class="card" id="s1">
+          <span class="badge">Semana 1</span>
+          <h3>Semana 1</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">BV</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace X días]</div>
+              </div>
+            </div>
+            <button class="dots" aria-label="Más opciones">⋮</button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="" alt="Imagen Semana 1">
+          <p>[Escribe aquí el texto descriptivo de la Semana 1]</p>
+
+          <div class="actions">
+            <a class="btn primary" href="#s1">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s2">
+          <span class="badge">Semana 2</span>
+          <h3>Semana 2</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="" alt="Imagen Semana 2">
+          <p>[Escribe aquí el texto descriptivo de la Semana 2]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s2">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s3">
+          <span class="badge">Semana 3</span>
+          <h3>Semana 3</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="" alt="Imagen Semana 3">
+          <p>[Escribe aquí el texto descriptivo de la Semana 3]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s3">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s4">
+          <span class="badge">Semana 4</span>
+          <h3>Semana 4</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="" alt="Imagen Semana 4">
+          <p>[Escribe aquí el texto descriptivo de la Semana 4]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s4">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s5">
+          <span class="badge">Semana 5</span>
+          <h3>Semana 5</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="img/semana5.jpg" alt="Imagen Semana 5">
+          <p>[Texto de la Semana 5]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s5">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s6">
+          <span class="badge">Semana 6</span>
+          <h3>Semana 6</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="img/semana6.jpg" alt="Imagen Semana 6">
+          <p>[Texto de la Semana 6]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s6">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s7">
+          <span class="badge">Semana 7</span>
+          <h3>Semana 7</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="img/semana7.jpg" alt="Imagen Semana 7">
+          <p>[Texto de la Semana 7]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s7">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+        <article class="card" id="s8">
+          <span class="badge">Semana 8</span>
+          <h3>Semana 8</h3>
+          <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+          <img data-src="img/semana8.jpg" alt="Imagen Semana 8">
+          <p>[Texto de cierre de la bitácora]</p>
+          <div class="actions">
+            <a class="btn primary" href="#s8">Ver semana</a>
+            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
   </div>
-</div>
-<script>
-const cards = document.getElementById("cards");
-const modal = document.getElementById("modal");
-const newPost = document.getElementById("newPost");
-const saveBtn = document.getElementById("save");
-const cancelBtn = document.getElementById("cancel");
-const searchInput = document.getElementById("searchInput");
-const exportJSON = document.getElementById("exportJSON");
 
-let posts = JSON.parse(localStorage.getItem("posts")) || [];
-let editingIndex = null;
+  <footer>
+    Proyecto académico del segundo semestre · Universidad de las Artes · Laboratorio Interdisciplinar
+  </footer>
 
-function saveStorage(){
-  localStorage.setItem("posts", JSON.stringify(posts));
-}
-
-function render(filter=""){
-  cards.innerHTML="";
-  posts
-    .filter(p =>
-      p.text.toLowerCase().includes(filter) ||
-      String(p.week).includes(filter)
-    )
-    .forEach((p,i)=>{
-      const el = document.createElement("div");
-      el.className="card";
-      el.innerHTML=`
-        <span class="badge">Semana ${p.week}</span>
-        <p>${p.text}</p>
-        ${p.img ? `<img src="${p.img}">` : ""}
-        <div class="controls">
-          <button onclick="editPost(${i})">Editar</button>
-          <button onclick="deletePost(${i})">Borrar</button>
-        </div>
-      `;
-      cards.appendChild(el);
+  <script>
+    // Mostrar imágenes solo si hay ruta válida
+    document.querySelectorAll("img[data-src]").forEach(img => {
+      const src = (img.getAttribute("data-src") || "").trim();
+      if (src && !src.includes("[") && !src.includes("ruta-de-la-imagen")) {
+        img.src = src;
+        img.style.display = "block";
+      }
     });
-}
 
-function editPost(i){
-  editingIndex=i;
-  const p=posts[i];
-  weekInput.value=p.week;
-  textInput.value=p.text;
-  modal.classList.remove("hidden");
-}
+    // Navegación del menú: scroll horizontal hacia la tarjeta
+    const container = document.getElementById("cards");
+    document.querySelectorAll('.nav a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (!el || !container) return;
 
-function deletePost(i){
-  if(confirm("¿Borrar esta semana?")){
-    posts.splice(i,1);
-    saveStorage();
-    render(searchInput.value.toLowerCase());
-  }
-}
+        e.preventDefault();
+        const left = el.offsetLeft - 12;
+        container.scrollTo({ left, behavior: 'smooth' });
+        history.replaceState(null, "", id);
+      });
+    });
 
-newPost.onclick=()=>{
-  editingIndex=null;
-  weekInput.value="";
-  textInput.value="";
-  modal.classList.remove("hidden");
-};
+    // Iniciar desde la derecha (para recorrer hacia la izquierda)
+    window.addEventListener("load", () => {
+      const c = document.getElementById("cards");
+      if (c) c.scrollLeft = c.scrollWidth;
+    });
+  </script>
 
-cancelBtn.onclick=()=>modal.classList.add("hidden");
-
-saveBtn.onclick=()=>{
-  const week=weekInput.value;
-  const text=textInput.value;
-  const file=imgInput.files[0];
-
-  if(!week||!text)return alert("Completa los campos");
-
-  const saveData=(img)=>{
-    const data={week,text,img};
-    if(editingIndex!==null){
-      posts[editingIndex]=data;
-    }else{
-      posts.push(data);
-    }
-    saveStorage();
-    modal.classList.add("hidden");
-    render(searchInput.value.toLowerCase());
-  };
-
-  if(file){
-    const r=new FileReader();
-    r.onload=()=>saveData(r.result);
-    r.readAsDataURL(file);
-  }else{
-    saveData(null);
-  }
-};
-
-searchInput.oninput=()=>{
-  render(searchInput.value.toLowerCase());
-};
-
-exportJSON.onclick=()=>{
-  const blob=new Blob([JSON.stringify(posts,null,2)],{type:"application/json"});
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(blob);
-  a.download="bitacora.json";
-  a.click();
-};
-
-render();
-</script>
 </body>
 </html>
