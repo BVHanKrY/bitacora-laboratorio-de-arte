@@ -484,7 +484,48 @@
       color: var(--muted);
       font-size: 13px;
     }
+    /* ====== Detalle: panel desplegable (Audio / Video) ====== */
+  .details-panel{
+     margin-top: 10px;
+     padding: 10px;
+     border-radius: 14px;
+     border: 1px solid rgba(231,207,173,0.9);
+     background: rgba(255,250,242,0.85);
+   }
 
+  .details-row{
+     display:flex;
+     gap:10px;
+     flex-wrap:wrap;
+     align-items:center;
+   }
+
+  .media-btn{
+     display:inline-flex;
+     align-items:center;
+     justify-content:center;
+     gap:8px;
+     font-size: 13px;
+     padding: 10px 12px;
+     border-radius: 12px;
+     border: 1px solid rgba(231,207,173,0.9);
+     background: rgba(255,255,255,0.75);
+     cursor:pointer;
+     color: var(--text);
+     transition: transform .12s ease, background .12s ease;
+   }
+   .media-btn:hover{
+     transform: translateY(-1px);
+     background: rgba(255,255,255,0.98);
+   }
+
+   .details-note{
+     margin: 10px 0 0;
+     font-size: 12px;
+     color: var(--muted);
+     line-height: 1.4;
+  }
+    
     /* ====== MÓVIL ====== */
     @media (max-width: 520px){
       .brand h1{ font-size:16px; }
@@ -578,7 +619,7 @@
     <section class="cards-wrap">
       <div class="container" id="cards">
 
-        <!-- NOTA: para ahorrar espacio, dejo 2 semanas completas. Copia/pega el mismo patrón para s11..s16 -->
+        <!-- SEMANA 9-->
         <article class="card" id="s9" data-week="9">
           <span class="badge">Semana 9</span>
           <h3>Semana 9</h3>
@@ -605,12 +646,31 @@
           <img data-src="https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Imagenes/25%20nov.1.jpg" alt="Imagen Semana 9">
           <p>[Escribe aquí el texto descriptivo de la Semana 9]</p>
 
+    <!-- BOTONES DE TARJETAS-->
           <div class="actions">
-            <a class="btn primary" href="#s9">Ver semana</a>
-            <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-          </div>
-        </article>
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
 
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
+</article>
+
+         <!-- SEMANA 10-->
        <article class="card" id="s10" data-week="10">
   <span class="badge">Semana 10</span>
   <h3>Semana 10</h3>
@@ -636,12 +696,31 @@
   <img data-src="" alt="Imagen Semana 10">
   <p>[Escribe aquí el texto descriptivo de la Semana 10]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s10">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+  <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
 
+         <!-- SEMANA 11-->
 <article class="card" id="s11" data-week="11">
   <span class="badge">Semana 11</span>
   <h3>Semana 11</h3>
@@ -667,12 +746,31 @@
   <img data-src="" alt="Imagen Semana 11">
   <p>[Escribe aquí el texto descriptivo de la Semana 11]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s11">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
-</article>
+   <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
 
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
+</article>
+        
+          <!-- SEMANA 12-->
 <article class="card" id="s12" data-week="12">
   <span class="badge">Semana 12</span>
   <h3>Semana 12</h3>
@@ -698,12 +796,31 @@
   <img data-src="" alt="Imagen Semana 12">
   <p>[Escribe aquí el texto descriptivo de la Semana 12]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s12">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+  <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
 
+         <!-- SEMANA 13-->
 <article class="card" id="s13" data-week="13">
   <span class="badge">Semana 13</span>
   <h3>Semana 13</h3>
@@ -729,12 +846,31 @@
   <img data-src="" alt="Imagen Semana 13">
   <p>[Escribe aquí el texto descriptivo de la Semana 13]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s13">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+   <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
 
+         <!-- SEMANA 14-->
 <article class="card" id="s14" data-week="14">
   <span class="badge">Semana 14</span>
   <h3>Semana 14</h3>
@@ -760,12 +896,31 @@
   <img data-src="" alt="Imagen Semana 14">
   <p>[Escribe aquí el texto descriptivo de la Semana 14]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s14">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+   <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
 
+         <!-- SEMANA 15-->
 <article class="card" id="s15" data-week="15">
   <span class="badge">Semana 15</span>
   <h3>Semana 15</h3>
@@ -791,12 +946,31 @@
   <img data-src="" alt="Imagen Semana 15">
   <p>[Escribe aquí el texto descriptivo de la Semana 15]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s15">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+  <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
 
+         <!-- SEMANA 16-->
 <article class="card" id="s16" data-week="16">
   <span class="badge">Semana 16</span>
   <h3>Semana 16</h3>
@@ -822,10 +996,28 @@
   <img data-src="" alt="Imagen Semana 16">
   <p>[Escribe aquí el texto descriptivo de la Semana 16]</p>
 
-  <div class="actions">
-    <a class="btn primary" href="#s16">Ver semana</a>
-    <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
-  </div>
+   <!-- BOTONES DE TARJETAS-->
+          <div class="actions">
+          <button class="btn primary details-btn" type="button" aria-expanded="false">
+          Detalle
+          </button>
+
+          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
+          Comentarios
+          </a>
+        </div>
+
+    <!-- Panel desplegable: Audio / Video (demo) -->
+       <div class="details-panel" hidden>
+        <div class="details-row">
+         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+       </div>
+
+     <p class="details-note">
+        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
+     </p>
+   </div>
 </article>
         
         <!-- ya esta completo las tarjetas de semanas (igual que s9 cambiando ids y textos) -->
@@ -1000,7 +1192,57 @@
         closeAllContextMenus();
       }
     });
-  </script>
+    // ========= DETALLE (Audio/Video) =========
+function closeAllDetailsPanels(exceptCard){
+  document.querySelectorAll(".card").forEach(card => {
+    if (exceptCard && card === exceptCard) return;
 
+    const panel = card.querySelector(".details-panel");
+    const btn = card.querySelector(".details-btn");
+
+    if (panel) panel.hidden = true;
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  });
+}
+
+document.addEventListener("click", (e) => {
+  const detailsBtn = e.target.closest(".details-btn");
+  const mediaBtn = e.target.closest(".media-btn");
+
+  // Click en "Detalle"
+  if (detailsBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const card = detailsBtn.closest(".card");
+    const panel = card?.querySelector(".details-panel");
+    if (!panel) return;
+
+    const willOpen = panel.hidden;   // si está oculto, se abrirá
+    closeAllDetailsPanels(card);     // cierra los demás
+    panel.hidden = !willOpen;        // toggle
+    detailsBtn.setAttribute("aria-expanded", String(willOpen));
+    return;
+  }
+
+  // Click en Audio / Video (demo)
+  if (mediaBtn) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const type = mediaBtn.getAttribute("data-media");
+    const card = mediaBtn.closest(".card");
+    const week = card?.getAttribute("data-week") || card?.id || "?";
+
+    if (type === "audio") alert("Audio (demo) · Semana: " + week);
+    if (type === "video") alert("Video (demo) · Semana: " + week);
+    return;
+  }
+
+  // Click fuera: cerrar paneles de detalle
+  closeAllDetailsPanels();
+}, true);
+    
+  </script>
 </body>
 </html>
