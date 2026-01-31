@@ -257,7 +257,10 @@
       gap: 18px;
       overflow-x: auto;
       padding: 18px 6px 18px;
-      align-items: stretch;
+
+      /* ✅ CAMBIO CLAVE: evita que el flex estire todas las tarjetas a la misma altura */
+      align-items: flex-start;
+
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
@@ -275,7 +278,10 @@
 
     .card{
       width: 360px;
-      min-height: 330px;
+
+      /* ✅ CAMBIO CLAVE: quitar altura mínima forzada para evitar "espacios feos" */
+      /* min-height: 330px; */
+
       height: auto;
       flex: 0 0 auto;
       scroll-snap-align: start;
@@ -417,8 +423,10 @@
 
     .actions{
       display:flex;
-      gap: 10px; /* ✅ AQUÍ ajustas la distancia entre "Detalle" y "Comentarios" */
+      gap: 10px;
       flex-wrap:wrap;
+
+      /* esto solo empuja los botones al fondo si hay espacio extra */
       margin-top:auto;
     }
 
@@ -582,7 +590,10 @@
     /* ====== MÓVIL ====== */
     @media (max-width: 520px){
       .brand h1{ font-size:16px; }
-      .card{ width: 85vw; min-height: 340px; height: auto; }
+
+      /* ✅ CAMBIO: sin min-height forzado en móvil */
+      .card{ width: 85vw; /* min-height: 340px; */ height: auto; }
+
       .side{ display:none; }
       .tools-float{ display:block; }
     }
@@ -740,8 +751,6 @@
           </div>
 
           <div class="meta">Fecha: <strong>02 de Diciembre 2025</strong></div>
-      
-          <!--imagen link-->
           <img data-src="" alt="Imagen Semana 10">
           <p>Escribe aquí el texto descriptivo de la Semana 10</p>
 
@@ -785,11 +794,9 @@
           </div>
 
           <div class="meta">Fecha: <strong>09 de Diciembre 2025</strong></div>
-          
-            <!--imagen link-->
-           <img data-src="Imagenes/6 ene.5.jpg" alt="Imagen Semana 11">
-           <img data-src="Imagenes/6 ene.6.jpg" alt="Imagen Semana 11">
-           <img data-src="Imagenes//6 ene.7.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes/6 ene.5.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes/6 ene.6.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes//6 ene.7.jpg" alt="Imagen Semana 11">
           <p>La clase empezó con una introducción a distintas formas de entender el movimiento, enfocándonos en el peso, la dirección y la velocidad como elementos que permiten una apreciación más profunda de los gestos.
              Luego, el profesor nos dio la consigna para la clase que consistía en usar el cuerpo: elegir imágenes con tensión, construir una 
              instalación con objetos cotidianos anulando su función, y finalmente realizar una acción performática breve que siguiera la energía y el “verbo”. Como entrega, se presentó la instalacion como parte de la segunda parte de la clase.
@@ -837,11 +844,11 @@
 
           <div class="meta">Fecha: <strong>16 de Diciembre 2025</strong></div>
           <img data-src="Imagenes/9 dic..1.jpg" alt="Imagen Semana 12">
-           <img data-src="Imagenes/9 dic.2.jpg" alt="Imagen Semana 12">
-           <img data-src="Imagenes/9 dic.3.jpg" alt="Imagen Semana 12">
-           <img data-src="Imagenes/9 dic.4.jpg" alt="Imagen Semana 12">
-           <img data-src="Imagenes/9 dic.5.jpg" alt="Imagen Semana 12">
-           <img data-src="Imagenes/9 dic.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes/9 dic.2.jpg" alt="Imagen Semana 12">
+          <img data-src="Imagenes/9 dic.3.jpg" alt="Imagen Semana 12">
+          <img data-src="Imagenes/9 dic.4.jpg" alt="Imagen Semana 12">
+          <img data-src="Imagenes/9 dic.5.jpg" alt="Imagen Semana 12">
+          <img data-src="Imagenes/9 dic.jpg" alt="Imagen Semana 11">
           <p>En la semana 12 llegamos a clase con los materiales que el profesor nos había indicado previamente. A partir de ahí, comenzamos el montaje de una instalación performática: movimos mesas y sillas, apilamos algunas mesas una sobre otra y reorganizamos el aula hasta convertirla en un espacio de acción. Varios compañeros trabajaron con lo que tenían en sus maletas, y otros —con una energía casi de improvisadores de teatro— ya tenían su propuesta muy avanzada, casi como una pequeña obra escénica.
              En mi caso, me sentía un poco falto de ideas, porque para mí es difícil usar el cuerpo y el movimiento de este modo. Por eso empecé a probar desde otro lugar: el sonido y las sensaciones que se asocian con la música. Me interesó explorar cómo el sonido puede contener dolor, pero también cómo las molestias y frustraciones aparecen cuando el sonido se vuelve un tormento, especialmente al escuchar cosas desagradables. Mi camino performático comenzó a tomar rumbo por ahí, conectado además con un sentimiento futurista que llevo: el futuro me impresiona porque será el lugar donde jamás estaré, y por eso lo valoro más. En cambio, el pasado ya lo viví y no me gusta recordarlo; aunque sé que es una línea muy delgada quedarse atrapado solo en esa idea.
              Aun así, esa reflexión fue la razón por la que tomé las fotografías, y con ellas logré construir una instalación casi basada en lo que realmente quiero.
@@ -887,10 +894,10 @@
           </div>
 
           <div class="meta">Fecha: <strong>06 de Enero 2026</strong></div>
-           <img data-src="Imagenes/6 ene.4.jpg" alt="Imagen Semana 11">
-           <img data-src="Imagenes/6 ene.3.jpg" alt="Imagen Semana 11">
-           <img data-src="Imagenes//6 ene.2.jpg" alt="Imagen Semana 11">
-           <img data-src="Imagenes//6 ene.1.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes/6 ene.4.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes/6 ene.3.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes//6 ene.2.jpg" alt="Imagen Semana 11">
+          <img data-src="Imagenes//6 ene.1.jpg" alt="Imagen Semana 11">
           <p>Escribe aquí el texto descriptivo de la Semana 13</p>
 
           <div class="actions">
@@ -1287,12 +1294,11 @@
         return;
       }
 
-      // ✅ Audio/Video ahora renderiza lista desde MEDIA_LIBRARY
       if (mediaBtn) {
         e.preventDefault();
         e.stopPropagation();
 
-        const type = mediaBtn.getAttribute("data-media"); // "audio" | "video"
+        const type = mediaBtn.getAttribute("data-media");
         const card = mediaBtn.closest(".card");
         if (!card) return;
 
@@ -1310,26 +1316,21 @@
         const btn = card.querySelector(".more-btn");
         if (!p || !btn) return;
 
-        // Resetea estado
         p.classList.remove("expanded");
         btn.textContent = "Ver más";
         btn.setAttribute("aria-expanded", "false");
 
-        // Medimos altura "clamp"
         const clampH = p.getBoundingClientRect().height;
 
-        // Medimos altura completa (temporal)
         p.classList.add("expanded");
         const fullH = p.getBoundingClientRect().height;
         p.classList.remove("expanded");
 
-        // Si no hay diferencia real, ocultamos el botón
-        const needs = (fullH - clampH) > 2; // tolerancia
+        const needs = (fullH - clampH) > 2;
         btn.style.display = needs ? "inline-flex" : "none";
       });
     }
 
-    // Toggle del botón
     document.addEventListener("click", (e) => {
       const moreBtn = e.target.closest(".more-btn");
       if (!moreBtn) return;
