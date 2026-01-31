@@ -16,7 +16,6 @@
       --text:#2f2f2f;
       --muted:#6b6b6b;
       --accent:#b76a2b;
-      --shadow: 0 10px 30px rgba(0,0,0,0.10);
       --shadow2: 0 6px 14px rgba(0,0,0,0.08);
       --radius: 16px;
     }
@@ -29,6 +28,7 @@
       font-family:'Roboto', sans-serif;
       color:var(--text);
       overflow-x:hidden;
+
       background:
         linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
         url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
@@ -80,7 +80,7 @@
       color:var(--muted);
     }
 
-    /* Botones minimalistas */
+    /* ====== Botón hamburguesa (semanas) SOLO en header ====== */
     .iconbtn{
       width: 44px;
       height: 44px;
@@ -102,7 +102,6 @@
       outline-offset: 2px;
     }
 
-    /* Icono hamburguesa */
     .burger-lines{
       width: 18px;
       height: 12px;
@@ -117,21 +116,9 @@
       background: rgba(47,47,47,0.80);
     }
 
-    /* Icono tools minimalista */
-    .dots-icon{
-      font-size: 22px;
-      line-height: 1;
-      color: rgba(47,47,47,0.80);
-      transform: translateY(-1px);
-      user-select:none;
-    }
-
-    /* Dropdown (genérico) */
+    /* ====== Dropdown general ====== */
     .dropdown{
-      position: absolute;
-      right: 0;
-      top: calc(100% + 10px);
-      width: min(260px, 80vw);
+      width: min(260px, 88vw);
       padding: 10px;
       border-radius: 16px;
       border: 1px solid rgba(231,207,173,0.9);
@@ -182,30 +169,50 @@
       background: rgba(255,250,242,0.85);
     }
 
-    /* ====== MENÚ SEMANAS: dentro del header ====== */
-    .weeks-wrap{
-      position: relative;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
+    /* ====== Menú semanas: anclado al header ====== */
+    .weeks-wrap{ position: relative; }
+    .weeks-dropdown{
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
     }
 
-    /* ====== TOOLS: fuera de la banda café (fixed) ====== */
+    /* ====== Botón ⋯ FUERA del header (móvil) ====== */
     .tools-float{
+      display:none; /* por defecto oculto */
       position: fixed;
       right: 16px;
-      /* Lo ponemos justo debajo de la banda (ajustable) */
-      top: 92px;
-      z-index: 60; /* encima del contenido, debajo de dropdowns */
-      display:none; /* por defecto: lo activamos solo en móvil */
+      /* top lo definimos por JS para que quede justo debajo del header */
+      z-index: 70;
+      cursor: pointer;
+
+      /* SIN marco / SIN tarjeta / SIN fondo */
+      border: none;
+      background: transparent;
+      padding: 10px;          /* área táctil, pero visualmente no se ve marco */
+      border-radius: 999px;   /* por si el navegador hace highlight */
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .tools-float .tools-wrap{
-      position: relative;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:10px;
+    .tools-float:focus{
+      outline: 2px solid rgba(183,106,43,0.25);
+      outline-offset: 2px;
+    }
+
+    .tools-float .dots-icon{
+      font-size: 26px;
+      line-height: 1;
+      color: rgba(47,47,47,0.75);
+      user-select:none;
+      display:block;
+    }
+
+    /* Dropdown tools: fijo (debajo del botón ⋯) */
+    .tools-dropdown{
+      position: fixed;
+      right: 16px;
+      /* top lo definimos por JS para que quede debajo del ⋯ */
+      z-index: 999;
     }
 
     /* Intro */
@@ -226,10 +233,7 @@
       flex: 1 1 520px;
       min-width: 260px;
     }
-    .hero h2{
-      margin:0 0 8px;
-      font-size: 20px;
-    }
+    .hero h2{ margin:0 0 8px; font-size: 20px; }
     .hero p{
       margin:0;
       color:var(--muted);
@@ -278,7 +282,6 @@
       border-radius: 999px;
     }
 
-    /* Tarjetas */
     .card{
       width: 360px;
       height: 260px;
@@ -295,7 +298,6 @@
 
       display:flex;
       flex-direction:column;
-      transition: transform .15s ease, box-shadow .15s ease;
     }
 
     .badge{
@@ -308,8 +310,6 @@
       border: 1px solid rgba(231,207,173,0.9);
       color: var(--muted);
     }
-
-    .card h3{ font-size: 16px; margin: 0 0 6px; letter-spacing: 0.2px; }
 
     .post-head{
       display:flex;
@@ -350,6 +350,7 @@
       line-height: 1.5;
       margin:0 0 12px;
       color: #3a3a3a;
+
       overflow:hidden;
       display:-webkit-box;
       -webkit-line-clamp: 4;
@@ -375,11 +376,6 @@
       border: 1px solid rgba(231,207,173,0.9);
       background: rgba(255,250,242,0.85);
       color: var(--text);
-      transition: transform .12s ease, background .12s ease;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,250,242,1);
     }
     .btn.primary{
       background: rgba(183,106,43,0.14);
@@ -387,7 +383,7 @@
       color: #4a2a14;
     }
 
-    /* Panel lateral desktop */
+    /* Panel lateral (desktop) */
     .side{
       position: fixed;
       right: 16px;
@@ -410,9 +406,8 @@
       cursor:pointer;
       font-size:18px;
     }
-    .side button:hover{ background:#fff; }
 
-    /* FAB */
+    /* Botón flotante + */
     .fab{
       position: fixed;
       right: 26px;
@@ -447,25 +442,15 @@
       /* Oculta panel lateral en móvil */
       .side{ display:none; }
 
-      /* Activa tools flotante en móvil */
+      /* Muestra el ⋯ fuera del header */
       .tools-float{ display:block; }
-
-      /* Ajuste de ancho dropdown en móvil */
-      .dropdown{ width: min(260px, 88vw); }
-
-      /* Ajusta la altura del header sin engordarlo */
-      .header-inner{ align-items:flex-start; }
-      .brand{ min-width: 0; }
-
-      /* Ajusta posición del tools: usa top en base al alto real del header */
-      .tools-float{ top: 94px; } /* si tu header cambia, ajusta este número */
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Panel lateral desktop (móvil: oculto) -->
+  <!-- Panel lateral: solo desktop -->
   <aside class="side" aria-label="Herramientas rápidas (desktop)">
     <button title="Buscar">🔍</button>
     <button title="Compartir">↗</button>
@@ -473,39 +458,30 @@
     <button title="Ajustes">⚙</button>
   </aside>
 
-  <!-- Tools flotante (solo móvil) FUERA de la banda café -->
-  <div class="tools-float" id="toolsFloat">
-    <div class="tools-wrap">
-      <button
-        class="iconbtn"
-        id="toolsBtn"
-        aria-label="Abrir herramientas"
-        aria-controls="toolsMenu"
-        aria-expanded="false"
-      >
-        <span class="dots-icon" aria-hidden="true">⋯</span>
-      </button>
+  <!-- Botón ⋯ FUERA del header (solo móvil) -->
+  <button class="tools-float" id="toolsBtn" aria-label="Abrir herramientas" aria-controls="toolsMenu" aria-expanded="false">
+    <span class="dots-icon" aria-hidden="true">⋯</span>
+  </button>
 
-      <div class="dropdown" id="toolsMenu" role="menu" aria-label="Herramientas">
-        <h4>Herramientas</h4>
-        <button type="button" role="menuitem" onclick="alert('Buscar (demo)')">Buscar <span class="tag">🔍</span></button>
-        <button type="button" role="menuitem" onclick="alert('Compartir (demo)')">Compartir <span class="tag">↗</span></button>
-        <button type="button" role="menuitem" onclick="alert('Notificaciones (demo)')">Notificaciones <span class="tag">🔔</span></button>
-        <button type="button" role="menuitem" onclick="alert('Ajustes (demo)')">Ajustes <span class="tag">⚙</span></button>
-      </div>
-    </div>
+  <!-- Dropdown tools (solo móvil) -->
+  <div class="dropdown tools-dropdown" id="toolsMenu" role="menu" aria-label="Herramientas">
+    <h4>Herramientas</h4>
+    <button type="button" role="menuitem" onclick="alert('Buscar (demo)')">Buscar <span class="tag">🔍</span></button>
+    <button type="button" role="menuitem" onclick="alert('Compartir (demo)')">Compartir <span class="tag">↗</span></button>
+    <button type="button" role="menuitem" onclick="alert('Notificaciones (demo)')">Notificaciones <span class="tag">🔔</span></button>
+    <button type="button" role="menuitem" onclick="alert('Ajustes (demo)')">Ajustes <span class="tag">⚙</span></button>
   </div>
 
   <button class="fab" title="Nuevo post">+</button>
 
-  <header>
+  <header id="mainHeader">
     <div class="header-inner">
       <div class="brand">
         <h1>Bitácora Segundo Semestre</h1>
         <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
       </div>
 
-      <!-- SOLO la hamburguesa de semanas dentro de la banda café -->
+      <!-- Semanas: solo hamburguesa en el header -->
       <div class="weeks-wrap">
         <button
           class="iconbtn"
@@ -519,7 +495,7 @@
           </span>
         </button>
 
-        <div class="dropdown" id="weeksMenu" role="menu" aria-label="Semanas">
+        <div class="dropdown weeks-dropdown" id="weeksMenu" role="menu" aria-label="Semanas">
           <h4>Semanas</h4>
           <a href="#s1" role="menuitem">Semana 1 <span class="tag">S1</span></a>
           <a href="#s2" role="menuitem">Semana 2 <span class="tag">S2</span></a>
@@ -531,7 +507,6 @@
           <a href="#s8" role="menuitem">Semana 8 <span class="tag">S8</span></a>
         </div>
       </div>
-
     </div>
   </header>
 
@@ -565,6 +540,7 @@
                 <div class="time">[hace X días]</div>
               </div>
             </div>
+            <button class="dots" aria-label="Más opciones">⋮</button>
           </div>
 
           <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
@@ -679,7 +655,7 @@
       }
     });
 
-    // ====== Scroll horizontal hacia la tarjeta ======
+    // Scroll horizontal hacia la tarjeta
     const container = document.getElementById("cards");
     function scrollToCard(id){
       const el = document.querySelector(id);
@@ -689,34 +665,49 @@
       history.replaceState(null, "", id);
     }
 
-    // ====== Dropdown control ======
-    function openMenu(btn, menu){
-      menu.classList.add("open");
-      btn.setAttribute("aria-expanded", "true");
-    }
-    function closeMenu(btn, menu){
+    // ====== Dropdown helpers ======
+    const hamburgerBtn = document.getElementById("hamburger");
+    const weeksMenu = document.getElementById("weeksMenu");
+    const toolsBtn = document.getElementById("toolsBtn");
+    const toolsMenu = document.getElementById("toolsMenu");
+    const header = document.getElementById("mainHeader");
+
+    function closeDropdown(btn, menu){
+      if (!btn || !menu) return;
       menu.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
     }
 
-    const hamburgerBtn = document.getElementById("hamburger");
-    const weeksMenu = document.getElementById("weeksMenu");
-
-    const toolsBtn = document.getElementById("toolsBtn");
-    const toolsMenu = document.getElementById("toolsMenu");
-
     function closeAll(){
-      closeMenu(hamburgerBtn, weeksMenu);
-      closeMenu(toolsBtn, toolsMenu);
+      closeDropdown(hamburgerBtn, weeksMenu);
+      closeDropdown(toolsBtn, toolsMenu);
     }
 
     function toggle(btn, menu){
-      const isOpen = menu.classList.contains("open");
+      const open = !menu.classList.contains("open");
       closeAll();
-      if (!isOpen) openMenu(btn, menu);
+      menu.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
     }
 
-    // Semanas
+    // ====== Posicionar ⋯ justo debajo del header (sin agrandar el header) ======
+    function positionTools(){
+      if (!header || !toolsBtn || !toolsMenu) return;
+
+      const rect = header.getBoundingClientRect();
+      const topForDots = rect.bottom + 10;      // 10px debajo del header
+      toolsBtn.style.top = topForDots + "px";
+
+      // Si el menú está abierto, lo ponemos debajo del botón ⋯
+      const btnRect = toolsBtn.getBoundingClientRect();
+      toolsMenu.style.top = (btnRect.bottom + 8) + "px";
+    }
+
+    window.addEventListener("load", positionTools);
+    window.addEventListener("resize", positionTools);
+    window.addEventListener("scroll", positionTools, { passive: true });
+
+    // ====== Semanas ======
     hamburgerBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       toggle(hamburgerBtn, weeksMenu);
@@ -732,18 +723,21 @@
       });
     });
 
-    // Tools (flotante)
+    // ====== Tools (⋯ fuera del header) ======
     toolsBtn.addEventListener("click", (e) => {
       e.stopPropagation();
+      positionTools();
       toggle(toolsBtn, toolsMenu);
     });
 
-    // Evita cerrar si clic dentro
+    // Evita que click dentro cierre
     weeksMenu.addEventListener("click", (e) => e.stopPropagation());
     toolsMenu.addEventListener("click", (e) => e.stopPropagation());
 
-    // Cerrar fuera / ESC
+    // Cerrar al tocar fuera
     document.addEventListener("click", () => closeAll());
+
+    // Cerrar con ESC
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeAll();
     });
