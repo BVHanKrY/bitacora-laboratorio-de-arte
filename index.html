@@ -410,7 +410,7 @@
 
     .actions{
       display:flex;
-      gap:10px; /* ✅ AQUÍ ajustas la distancia entre Detalle y Comentarios */
+      gap: 10px; /* ✅ AQUÍ ajustas la distancia entre "Detalle" y "Comentarios" */
       flex-wrap:wrap;
       margin-top:auto;
     }
@@ -527,7 +527,7 @@
       line-height: 1.4;
     }
 
-    /* ✅ NUEVO: lista de medios */
+    /* ====== Lista de medios (Audio/Video) ====== */
     .media-title{
       margin: 10px 0 6px;
       font-size: 12px;
@@ -572,11 +572,10 @@
       flex: 0 0 auto;
     }
 
-    /* ====== MÓVIL (✅ ARREGLADO: llaves correctas) ====== */
+    /* ====== MÓVIL ====== */
     @media (max-width: 520px){
       .brand h1{ font-size:16px; }
       .card{ width: 85vw; min-height: 340px; height: auto; }
-
       .side{ display:none; }
       .tools-float{ display:block; }
     }
@@ -696,7 +695,6 @@
             <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
           </div>
 
-          <!-- Panel desplegable: Audio / Video -->
           <div class="details-panel" hidden>
             <div class="details-row">
               <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
@@ -707,7 +705,7 @@
             <ul class="media-list" data-media-list></ul>
 
             <p class="details-note">
-              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
             </p>
           </div>
         </article>
@@ -753,14 +751,12 @@
             <ul class="media-list" data-media-list></ul>
 
             <p class="details-note">
-              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
             </p>
           </div>
         </article>
 
-        <!-- SEMANAS 11..16 (igual estructura que ya tienes, solo asegúrate que cada details-panel tenga media-title y media-list) -->
-
-        <!-- SEMANA 11 -->
+        <!-- SEMANA 11-->
         <article class="card" id="s11" data-week="11">
           <span class="badge">Semana 11</span>
           <h3>Semana 11</h3>
@@ -801,12 +797,240 @@
             <ul class="media-list" data-media-list></ul>
 
             <p class="details-note">
-              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
             </p>
           </div>
         </article>
 
-        <!-- (Repite la misma estructura details-panel para s12..s16) -->
+        <!-- SEMANA 12-->
+        <article class="card" id="s12" data-week="12">
+          <span class="badge">Semana 12</span>
+          <h3>Semana 12</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 2 meses]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
+
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[16 de Diciembre 2025]</strong></div>
+          <img data-src="" alt="Imagen Semana 12">
+          <p>[Escribe aquí el texto descriptivo de la Semana 12]</p>
+
+          <div class="actions">
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
+
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
+
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
+
+            <p class="details-note">
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- SEMANA 13-->
+        <article class="card" id="s13" data-week="13">
+          <span class="badge">Semana 13</span>
+          <h3>Semana 13</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 26 días]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
+
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[06 de Enero 2026]</strong></div>
+          <img data-src="" alt="Imagen Semana 13">
+          <p>[Escribe aquí el texto descriptivo de la Semana 13]</p>
+
+          <div class="actions">
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
+
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
+
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
+
+            <p class="details-note">
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- SEMANA 14-->
+        <article class="card" id="s14" data-week="14">
+          <span class="badge">Semana 14</span>
+          <h3>Semana 14</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 19 días]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
+
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[13 de Enero 2026]</strong></div>
+          <img data-src="" alt="Imagen Semana 14">
+          <p>[Escribe aquí el texto descriptivo de la Semana 14]</p>
+
+          <div class="actions">
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
+
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
+
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
+
+            <p class="details-note">
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- SEMANA 15-->
+        <article class="card" id="s15" data-week="15">
+          <span class="badge">Semana 15</span>
+          <h3>Semana 15</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 12 días]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
+
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[20 de Enero 2026]</strong></div>
+          <img data-src="" alt="Imagen Semana 15">
+          <p>[Escribe aquí el texto descriptivo de la Semana 15]</p>
+
+          <div class="actions">
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
+
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
+
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
+
+            <p class="details-note">
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
+            </p>
+          </div>
+        </article>
+
+        <!-- SEMANA 16-->
+        <article class="card" id="s16" data-week="16">
+          <span class="badge">Semana 16</span>
+          <h3>Semana 16</h3>
+
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 5 días]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
+
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
+
+          <div class="meta">Fecha: <strong>[27 de enero 2026]</strong></div>
+          <img data-src="" alt="Imagen Semana 16">
+          <p>[Escribe aquí el texto descriptivo de la Semana 16]</p>
+
+          <div class="actions">
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
+
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
+
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
+
+            <p class="details-note">
+              Tip: pega tus enlaces en <strong>MEDIA_LIBRARY</strong>.
+            </p>
+          </div>
+        </article>
 
       </div>
     </section>
@@ -826,27 +1050,20 @@
       }
     });
 
-    // ========= LIBRERÍA DE MEDIOS (✅ AQUÍ PEGAS TUS LINKS) =========
-    // Tip: usa links RAW, ejemplo:
+    // ========= LIBRERÍA DE MEDIOS (AQUÍ PEGAS TUS LINKS) =========
+    // Usa links RAW (directos). Ejemplo:
     // https://raw.githubusercontent.com/USUARIO/REPO/main/Media/Semana9/audio1.mp3
     const MEDIA_LIBRARY = {
       9: {
         audio: [
-          { title: "Audio 1 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/audio1.mp3" },
-          { title: "Audio 2 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/audio2.mp3" }
+          { title: "Audio 1 · Semana 9", url: "PEGA_AQUI_TU_LINK_RAW.mp3" },
+          { title: "Audio 2 · Semana 9", url: "PEGA_AQUI_TU_LINK_RAW.mp3" }
         ],
         video: [
-          { title: "Video 1 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/video1.mp4" }
+          { title: "Video 1 · Semana 9", url: "PEGA_AQUI_TU_LINK_RAW.mp4" }
         ]
       },
-      10: {
-        audio: [
-          // { title: "Audio 1 · Semana 10", url: "PEGAR_LINK_AQUI" }
-        ],
-        video: [
-          // { title: "Video 1 · Semana 10", url: "PEGAR_LINK_AQUI" }
-        ]
-      },
+      10: { audio: [], video: [] },
       11: { audio: [], video: [] },
       12: { audio: [], video: [] },
       13: { audio: [], video: [] },
@@ -864,10 +1081,7 @@
       const listEl = card.querySelector("[data-media-list]");
       if (!titleEl || !listEl) return;
 
-      titleEl.textContent = (type === "audio")
-        ? "Lista de audios"
-        : "Lista de videos";
-
+      titleEl.textContent = (type === "audio") ? "Lista de audios" : "Lista de videos";
       listEl.innerHTML = "";
 
       if (items.length === 0) {
@@ -934,7 +1148,6 @@
 
     function positionTools(){
       if (!header || !toolsBtn || !toolsMenu) return;
-
       const rect = header.getBoundingClientRect();
       const topForDots = rect.bottom + 1;
       toolsBtn.style.top = topForDots + "px";
@@ -1059,12 +1272,12 @@
         return;
       }
 
-      // ✅ NUEVO: Audio/Video ahora renderiza lista desde MEDIA_LIBRARY
+      // ✅ Audio/Video ahora renderiza lista desde MEDIA_LIBRARY
       if (mediaBtn) {
         e.preventDefault();
         e.stopPropagation();
 
-        const type = mediaBtn.getAttribute("data-media"); // audio | video
+        const type = mediaBtn.getAttribute("data-media"); // "audio" | "video"
         const card = mediaBtn.closest(".card");
         if (!card) return;
 
