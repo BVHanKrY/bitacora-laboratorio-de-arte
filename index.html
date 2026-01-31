@@ -29,7 +29,6 @@
       font-family:'Roboto', sans-serif;
       color:var(--text);
       overflow-x:hidden;
-
       background:
         linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
         url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
@@ -81,15 +80,7 @@
       color:var(--muted);
     }
 
-    /* ====== MENÚS (semanas + tools) ====== */
-    .menu-stack{
-      position: relative;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:10px;
-    }
-
+    /* Botones minimalistas */
     .iconbtn{
       width: 44px;
       height: 44px;
@@ -135,6 +126,7 @@
       user-select:none;
     }
 
+    /* Dropdown (genérico) */
     .dropdown{
       position: absolute;
       right: 0;
@@ -190,6 +182,32 @@
       background: rgba(255,250,242,0.85);
     }
 
+    /* ====== MENÚ SEMANAS: dentro del header ====== */
+    .weeks-wrap{
+      position: relative;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    /* ====== TOOLS: fuera de la banda café (fixed) ====== */
+    .tools-float{
+      position: fixed;
+      right: 16px;
+      /* Lo ponemos justo debajo de la banda (ajustable) */
+      top: 92px;
+      z-index: 60; /* encima del contenido, debajo de dropdowns */
+      display:none; /* por defecto: lo activamos solo en móvil */
+    }
+
+    .tools-float .tools-wrap{
+      position: relative;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:10px;
+    }
+
     /* Intro */
     .hero{
       margin-top: 18px;
@@ -236,7 +254,7 @@
       box-shadow: 0 0 0 4px rgba(183,106,43,0.15);
     }
 
-    /* ======= CONTENEDOR HORIZONTAL (SCROLL) ======= */
+    /* Cards horizontal */
     .cards-wrap{ margin-top: 18px; padding: 10px 0 6px; }
 
     .container{
@@ -260,7 +278,7 @@
       border-radius: 999px;
     }
 
-    /* ======= TARJETAS ======= */
+    /* Tarjetas */
     .card{
       width: 360px;
       height: 260px;
@@ -280,11 +298,6 @@
       transition: transform .15s ease, box-shadow .15s ease;
     }
 
-    .card:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.16);
-    }
-
     .badge{
       position:absolute;
       top:12px; right:12px;
@@ -296,11 +309,7 @@
       color: var(--muted);
     }
 
-    .card h3{
-      font-size: 16px;
-      margin: 0 0 6px;
-      letter-spacing: 0.2px;
-    }
+    .card h3{ font-size: 16px; margin: 0 0 6px; letter-spacing: 0.2px; }
 
     .post-head{
       display:flex;
@@ -322,19 +331,8 @@
     }
     .name{ font-weight:700; font-size:13px; }
     .time{ font-size:12px; color:var(--muted); margin-top:2px; }
-    .dots{
-      border:none;
-      background:transparent;
-      font-size:20px;
-      cursor:pointer;
-      color:var(--muted);
-    }
 
-    .meta{
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
+    .meta{ font-size: 12px; color: var(--muted); margin-bottom: 8px; }
 
     .card img{
       width:100%;
@@ -352,7 +350,6 @@
       line-height: 1.5;
       margin:0 0 12px;
       color: #3a3a3a;
-
       overflow:hidden;
       display:-webkit-box;
       -webkit-line-clamp: 4;
@@ -390,7 +387,7 @@
       color: #4a2a14;
     }
 
-    /* Panel lateral (SOLO desktop/tablet) */
+    /* Panel lateral desktop */
     .side{
       position: fixed;
       right: 16px;
@@ -415,7 +412,7 @@
     }
     .side button:hover{ background:#fff; }
 
-    /* Botón flotante + */
+    /* FAB */
     .fab{
       position: fixed;
       right: 26px;
@@ -430,10 +427,6 @@
       cursor:pointer;
       box-shadow: 0 16px 40px rgba(0,0,0,0.25);
       z-index: 90;
-    }
-    .fab:hover{
-      filter: brightness(1.05);
-      transform: translateY(-1px);
     }
 
     footer{
@@ -451,30 +444,57 @@
       .brand h1{ font-size:16px; }
       .card{ width: 85vw; height: 280px; }
 
-      /* Oculta el panel lateral fijo para que no estorbe */
+      /* Oculta panel lateral en móvil */
       .side{ display:none; }
 
-      /* Ajuste visual: evita que el header se vea apretado */
+      /* Activa tools flotante en móvil */
+      .tools-float{ display:block; }
+
+      /* Ajuste de ancho dropdown en móvil */
+      .dropdown{ width: min(260px, 88vw); }
+
+      /* Ajusta la altura del header sin engordarlo */
       .header-inner{ align-items:flex-start; }
       .brand{ min-width: 0; }
 
-      /* Dropdowns caen bien alineados con el stack */
-      .dropdown{
-        width: min(260px, 88vw);
-      }
+      /* Ajusta posición del tools: usa top en base al alto real del header */
+      .tools-float{ top: 94px; } /* si tu header cambia, ajusta este número */
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Panel lateral: se verá en desktop; en móvil se oculta por CSS -->
+  <!-- Panel lateral desktop (móvil: oculto) -->
   <aside class="side" aria-label="Herramientas rápidas (desktop)">
     <button title="Buscar">🔍</button>
     <button title="Compartir">↗</button>
     <button title="Notificaciones">🔔</button>
     <button title="Ajustes">⚙</button>
   </aside>
+
+  <!-- Tools flotante (solo móvil) FUERA de la banda café -->
+  <div class="tools-float" id="toolsFloat">
+    <div class="tools-wrap">
+      <button
+        class="iconbtn"
+        id="toolsBtn"
+        aria-label="Abrir herramientas"
+        aria-controls="toolsMenu"
+        aria-expanded="false"
+      >
+        <span class="dots-icon" aria-hidden="true">⋯</span>
+      </button>
+
+      <div class="dropdown" id="toolsMenu" role="menu" aria-label="Herramientas">
+        <h4>Herramientas</h4>
+        <button type="button" role="menuitem" onclick="alert('Buscar (demo)')">Buscar <span class="tag">🔍</span></button>
+        <button type="button" role="menuitem" onclick="alert('Compartir (demo)')">Compartir <span class="tag">↗</span></button>
+        <button type="button" role="menuitem" onclick="alert('Notificaciones (demo)')">Notificaciones <span class="tag">🔔</span></button>
+        <button type="button" role="menuitem" onclick="alert('Ajustes (demo)')">Ajustes <span class="tag">⚙</span></button>
+      </div>
+    </div>
+  </div>
 
   <button class="fab" title="Nuevo post">+</button>
 
@@ -485,9 +505,8 @@
         <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
       </div>
 
-      <!-- Stack: hamburguesa semanas + tools minimal debajo -->
-      <div class="menu-stack">
-        <!-- Semanas -->
+      <!-- SOLO la hamburguesa de semanas dentro de la banda café -->
+      <div class="weeks-wrap">
         <button
           class="iconbtn"
           id="hamburger"
@@ -511,26 +530,8 @@
           <a href="#s7" role="menuitem">Semana 7 <span class="tag">S7</span></a>
           <a href="#s8" role="menuitem">Semana 8 <span class="tag">S8</span></a>
         </div>
-
-        <!-- Tools (minimal) -->
-        <button
-          class="iconbtn"
-          id="toolsBtn"
-          aria-label="Abrir herramientas"
-          aria-controls="toolsMenu"
-          aria-expanded="false"
-        >
-          <span class="dots-icon" aria-hidden="true">⋯</span>
-        </button>
-
-        <div class="dropdown" id="toolsMenu" role="menu" aria-label="Herramientas">
-          <h4>Herramientas</h4>
-          <button type="button" role="menuitem" onclick="alert('Buscar (demo)')">Buscar <span class="tag">🔍</span></button>
-          <button type="button" role="menuitem" onclick="alert('Compartir (demo)')">Compartir <span class="tag">↗</span></button>
-          <button type="button" role="menuitem" onclick="alert('Notificaciones (demo)')">Notificaciones <span class="tag">🔔</span></button>
-          <button type="button" role="menuitem" onclick="alert('Ajustes (demo)')">Ajustes <span class="tag">⚙</span></button>
-        </div>
       </div>
+
     </div>
   </header>
 
@@ -564,7 +565,6 @@
                 <div class="time">[hace X días]</div>
               </div>
             </div>
-            <button class="dots" aria-label="Más opciones">⋮</button>
           </div>
 
           <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
@@ -689,31 +689,37 @@
       history.replaceState(null, "", id);
     }
 
-    // ====== Dropdown control (reutilizable) ======
-    function toggleDropdown(btn, menu){
-      const open = !menu.classList.contains("open");
-      closeAllDropdowns();
-      menu.classList.toggle("open", open);
-      btn.setAttribute("aria-expanded", String(open));
+    // ====== Dropdown control ======
+    function openMenu(btn, menu){
+      menu.classList.add("open");
+      btn.setAttribute("aria-expanded", "true");
     }
-
-    function closeDropdown(btn, menu){
+    function closeMenu(btn, menu){
       menu.classList.remove("open");
       btn.setAttribute("aria-expanded", "false");
     }
 
-    function closeAllDropdowns(){
-      if (weeksMenu && hamburgerBtn) closeDropdown(hamburgerBtn, weeksMenu);
-      if (toolsMenu && toolsBtn) closeDropdown(toolsBtn, toolsMenu);
-    }
-
-    // ====== Semanas ======
     const hamburgerBtn = document.getElementById("hamburger");
     const weeksMenu = document.getElementById("weeksMenu");
 
+    const toolsBtn = document.getElementById("toolsBtn");
+    const toolsMenu = document.getElementById("toolsMenu");
+
+    function closeAll(){
+      closeMenu(hamburgerBtn, weeksMenu);
+      closeMenu(toolsBtn, toolsMenu);
+    }
+
+    function toggle(btn, menu){
+      const isOpen = menu.classList.contains("open");
+      closeAll();
+      if (!isOpen) openMenu(btn, menu);
+    }
+
+    // Semanas
     hamburgerBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      toggleDropdown(hamburgerBtn, weeksMenu);
+      toggle(hamburgerBtn, weeksMenu);
     });
 
     weeksMenu.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -722,29 +728,24 @@
         if (!id) return;
         e.preventDefault();
         scrollToCard(id);
-        closeAllDropdowns();
+        closeAll();
       });
     });
 
-    // ====== Tools ======
-    const toolsBtn = document.getElementById("toolsBtn");
-    const toolsMenu = document.getElementById("toolsMenu");
-
+    // Tools (flotante)
     toolsBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      toggleDropdown(toolsBtn, toolsMenu);
+      toggle(toolsBtn, toolsMenu);
     });
 
-    // Evita que click dentro del dropdown lo cierre
+    // Evita cerrar si clic dentro
     weeksMenu.addEventListener("click", (e) => e.stopPropagation());
     toolsMenu.addEventListener("click", (e) => e.stopPropagation());
 
-    // Cerrar al hacer click fuera
-    document.addEventListener("click", () => closeAllDropdowns());
-
-    // Cerrar con ESC
+    // Cerrar fuera / ESC
+    document.addEventListener("click", () => closeAll());
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeAllDropdowns();
+      if (e.key === "Escape") closeAll();
     });
 
     // Si entras con hash
