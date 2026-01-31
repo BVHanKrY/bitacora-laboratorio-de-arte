@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bitácora Segundo Semestre | UArtes</title>
+
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#f5e1c8;
+      --bg2:#f8f3e0;
+      --paper:#fffaf2;
+      --card:#fff7ed;
+      --stroke:#e7cfad;
+      --text:#2f2f2f;
+      --muted:#6b6b6b;
+      --accent:#b76a2b;
+      --accent2:#f2d5a8;
+      --shadow: 0 10px 30px rgba(0,0,0,0.10);
+      --shadow2: 0 6px 14px rgba(0,0,0,0.08);
+      --radius: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 10% 5%, var(--bg2), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, #fde9cf, transparent 60%),
+                  linear-gradient(to bottom right, var(--bg1), var(--bg2));
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* Layout */
+    .page{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(242,213,168,0.75);
+      border-bottom: 1px solid rgba(231,207,173,0.8);
+    }
+
+    .header-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding: 14px 16px;
+      display:flex;
+      align-items:cente
 
