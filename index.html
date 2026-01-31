@@ -5,164 +5,301 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bitácora Segundo Semestre | UArtes</title>
 
+  <!-- Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
+      --bg1:#f5e1c8;
+      --bg2:#f8f3e0;
       --paper:#fffaf2;
+      --card:#fff7ed;
+      --stroke:#e7cfad;
       --text:#2f2f2f;
       --muted:#6b6b6b;
-      --accent:#c47a3a;
-      --radius:22px;
+      --accent:#b76a2b;
+      --accent2:#f2d5a8;
+      --shadow: 0 10px 30px rgba(0,0,0,0.10);
+      --shadow2: 0 6px 14px rgba(0,0,0,0.08);
+      --radius: 16px;
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family:'Roboto', sans-serif;
+      font-family:'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 10% 5%, var(--bg2), transparent 60%),
+                  radial-gradient(900px 600px at 90% 20%, #fde9cf, transparent 60%),
+                  linear-gradient(to bottom right, var(--bg1), var(--bg2));
       color:var(--text);
-      background:
-        linear-gradient(rgba(255,250,242,0.6), rgba(255,250,242,0.6)),
-        url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
-        center/cover fixed no-repeat;
+      overflow-x:hidden;
     }
 
+    /* Layout */
+    .page{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* Header */
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(242,213,168,0.85);
-      padding:14px 20px;
-      border-bottom:1px solid rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(242,213,168,0.75);
+      border-bottom: 1px solid rgba(231,207,173,0.8);
     }
 
-    nav{
+    .header-inner{
+      max-width:1200px;
+      margin:0 auto;
+      padding: 14px 16px;
       display:flex;
-      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      line-height:1.1;
+    }
+    .brand h1{
+      font-size: 18px;
+      margin:0;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+    .brand p{
+      margin:0;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .nav{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      text-decoration:none;
+      font-size:12px;
+      color: var(--text);
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.55);
+      transition: transform .12s ease, background .12s ease;
+      white-space:nowrap;
+    }
+    .nav a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,250,242,0.85);
+    }
+
+    /* Intro */
+    .hero{
+      margin-top: 18px;
+      padding: 18px;
+      background: rgba(255,250,242,0.75);
+      border: 1px solid rgba(231,207,173,0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
       flex-wrap:wrap;
     }
 
-    nav a{
-      font-size:12px;
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.8);
-      border:1px solid rgba(0,0,0,0.1);
-      color:var(--text);
+    .hero .left{
+      flex: 1 1 520px;
+      min-width: 260px;
+    }
+    .hero h2{
+      margin:0 0 8px;
+      font-size: 20px;
+    }
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size: 14px;
     }
 
-    nav a.active{
-      background:rgba(196,122,58,0.25);
-      border-color:rgba(196,122,58,0.45);
-      font-weight:700;
+    .hint{
+      flex: 0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius: 12px;
+      background: rgba(255,247,237,0.9);
+      border: 1px dashed rgba(183,106,43,0.35);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(183,106,43,0.15);
     }
 
-    .hero{
-      max-width:1200px;
-      margin:24px auto;
-      padding:20px;
+    /* Cards slider */
+    .cards-wrap{
+      margin-top: 18px;
+      padding: 10px 0 6px;
     }
 
-    /* ===== CONTENEDOR HORIZONTAL ===== */
     .container{
       display:flex;
-      gap:32px;
+      gap: 16px;
       overflow-x:auto;
-      padding:40px 40px 40px 40px;
-
-      /* 👇 permite desplazarse MÁS a la derecha */
-      padding-right:260px;
-
+      padding: 10px 6px 14px;
       scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .container::-webkit-scrollbar{ height:10px; }
+    /* nicer scrollbar (supports chromium) */
+    .container::-webkit-scrollbar{ height: 10px; }
     .container::-webkit-scrollbar-thumb{
-      background:rgba(196,122,58,0.4);
-      border-radius:999px;
+      background: rgba(183,106,43,0.35);
+      border-radius: 999px;
+    }
+    .container::-webkit-scrollbar-track{
+      background: rgba(0,0,0,0.06);
+      border-radius: 999px;
     }
 
-    /* ===== TARJETAS GRANDES ===== */
     .card{
-      width:480px;
-      height:320px;
-      flex:0 0 auto;
-      scroll-snap-align:start;
-
-      background:rgba(255,255,255,0.95);
-      border-radius:var(--radius);
-      padding:26px;
-
-      box-shadow:0 20px 50px rgba(0,0,0,0.18);
+      min-width: 320px;
+      max-width: 320px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 14px;
+      flex-shrink:0;
+      scroll-snap-align: start;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      justify-content:space-between;
+      box-shadow: var(--shadow2);
+      transition: transform .15s ease, box-shadow .15s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
 
     .badge{
-      align-self:flex-start;
-      font-size:12px;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(196,122,58,0.15);
-      border:1px solid rgba(196,122,58,0.4);
+      position:absolute;
+      top:12px; right:12px;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,250,242,0.75);
+      border: 1px solid rgba(231,207,173,0.9);
+      color: var(--muted);
     }
 
     .card h3{
-      margin:6px 0 2px;
-      font-size:22px;
+      font-size: 16px;
+      margin: 0 0 6px;
+      letter-spacing: 0.2px;
+    }
+    .meta{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
 
-    .meta{
-      font-size:13px;
-      color:var(--muted);
+    .card img{
+      width:100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin: 6px 0 10px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.5);
+      display:none; /* se activa por JS si hay src válido */
     }
 
     .card p{
-      font-size:15px;
-      line-height:1.6;
-      color:#3a3a3a;
-
-      overflow:hidden;
-      display:-webkit-box;
-      -webkit-line-clamp:5;
-      -webkit-box-orient:vertical;
+      font-size: 14px;
+      line-height: 1.5;
+      margin:0 0 12px;
+      color: #3a3a3a;
+      white-space: pre-wrap;
     }
 
     .actions{
+      display:flex;
+      gap:10px;
       margin-top:auto;
+      flex-wrap:wrap;
     }
 
     .btn{
-      font-size:14px;
-      padding:10px 16px;
-      border-radius:14px;
-      border:1px solid rgba(196,122,58,0.5);
-      background:rgba(196,122,58,0.15);
-      color:#4a2a14;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
       text-decoration:none;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.85);
+      color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,250,242,1);
+    }
+    .btn.primary{
+      background: rgba(183,106,43,0.14);
+      border-color: rgba(183,106,43,0.30);
+      color: #4a2a14;
     }
 
+    /* Footer */
     footer{
-      margin-top:40px;
-      padding:20px;
+      margin-top: 28px;
+      padding: 18px;
       text-align:center;
-      font-size:13px;
-      color:var(--muted);
-      background:rgba(242,213,168,0.75);
+      background: rgba(242,213,168,0.70);
+      border-top: 1px solid rgba(231,207,173,0.9);
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    /* ===== MOBILE ===== */
-    @media (max-width:600px){
-      .card{
-        width:90vw;
-        height:340px;
-      }
+    /* Responsive: en pantallas grandes, que se vea “casi” como grilla */
+    @media (min-width: 980px){
       .container{
-        padding-right:140px;
+        scroll-snap-type: none;
       }
+      .card{
+        min-width: 340px;
+        max-width: 340px;
+      }
+    }
+
+    @media (max-width: 520px){
+      .brand h1{ font-size:16px; }
+      .nav a{ font-size:11px; padding:7px 9px; }
+      .card{ min-width: 85vw; max-width: 85vw; }
     }
   </style>
 </head>
@@ -170,124 +307,180 @@
 <body>
 
 <header>
-  <nav>
-    <a href="#s1">Semana 1</a>
-    <a href="#s2">Semana 2</a>
-    <a href="#s3">Semana 3</a>
-    <a href="#s4">Semana 4</a>
-    <a href="#s5">Semana 5</a>
-    <a href="#s6">Semana 6</a>
-    <a href="#s7">Semana 7</a>
-    <a href="#s8">Semana 8</a>
-  </nav>
+  <div class="header-inner">
+    <div class="brand">
+      <h1>Bitácora Segundo Semestre</h1>
+      <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
+    </div>
+
+    <nav class="nav" aria-label="Navegación por semanas">
+      <a href="#s1">Semana 1</a>
+      <a href="#s2">Semana 2</a>
+      <a href="#s3">Semana 3</a>
+      <a href="#s4">Semana 4</a>
+      <a href="#s5">Semana 5</a>
+      <a href="#s6">Semana 6</a>
+      <a href="#s7">Semana 7</a>
+      <a href="#s8">Semana 8</a>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-  <h2>Registro semanal del proceso</h2>
-  <p>Desplázate horizontalmente para recorrer las semanas.</p>
-</section>
+<div class="page">
+  <section class="hero">
+    <div class="left">
+      <h2>Registro semanal del proceso</h2>
+      <p>
+        Este sitio recopila apuntes, reflexiones, avances y evidencias del segundo semestre.
+        Puedes desplazarte horizontalmente para recorrer las semanas o usar el menú para saltar a una.
+      </p>
+    </div>
+    <div class="hint" title="Tip">
+      <span class="dot"></span>
+      <span>Tip: arrastra lateralmente para ver más tarjetas</span>
+    </div>
+  </section>
 
-<section>
-  <div class="container" id="cards">
+  <section class="cards-wrap">
+    <div class="container" id="cards">
 
-    <article class="card" id="s1">
-      <span class="badge">Semana 1</span>
-      <h3>Semana 1</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 1</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <!-- PLANTILLA: duplica estas tarjetas y edita texto/fechas/imagenes -->
 
-    <article class="card" id="s2">
-      <span class="badge">Semana 2</span>
-      <h3>Semana 2</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 2</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s1">
+        <span class="badge">Semana 1</span>
+        <h3>Semana 1</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="" alt="Imagen Semana 1">
+        <p>[Escribe aquí el texto descriptivo de la Semana 1]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s1">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s3">
-      <span class="badge">Semana 3</span>
-      <h3>Semana 3</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 3</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s2">
+        <span class="badge">Semana 2</span>
+        <h3>Semana 2</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="" alt="Imagen Semana 2">
+        <p>[Escribe aquí el texto descriptivo de la Semana 2]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s2">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s4">
-      <span class="badge">Semana 4</span>
-      <h3>Semana 4</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 4</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s3">
+        <span class="badge">Semana 3</span>
+        <h3>Semana 3</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="" alt="Imagen Semana 3">
+        <p>[Escribe aquí el texto descriptivo de la Semana 3]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s3">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s5">
-      <span class="badge">Semana 5</span>
-      <h3>Semana 5</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 5</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s4">
+        <span class="badge">Semana 4</span>
+        <h3>Semana 4</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="" alt="Imagen Semana 4">
+        <p>[Escribe aquí el texto descriptivo de la Semana 4]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s4">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s6">
-      <span class="badge">Semana 6</span>
-      <h3>Semana 6</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 6</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s5">
+        <span class="badge">Semana 5</span>
+        <h3>Semana 5</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <!-- pon una ruta real, ejemplo: img/semana5.jpg -->
+        <img data-src="img/semana5.jpg" alt="Imagen Semana 5">
+        <p>[Texto de la Semana 5]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s5">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s7">
-      <span class="badge">Semana 7</span>
-      <h3>Semana 7</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto semana 7</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s6">
+        <span class="badge">Semana 6</span>
+        <h3>Semana 6</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="img/semana6.jpg" alt="Imagen Semana 6">
+        <p>[Texto de la Semana 6]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s6">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-    <article class="card" id="s8">
-      <span class="badge">Semana 8</span>
-      <h3>Semana 8</h3>
-      <div class="meta">Fecha</div>
-      <p>Texto de cierre de la bitácora</p>
-      <div class="actions"><a class="btn" href="#">Ver</a></div>
-    </article>
+      <article class="card" id="s7">
+        <span class="badge">Semana 7</span>
+        <h3>Semana 7</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="img/semana7.jpg" alt="Imagen Semana 7">
+        <p>[Texto de la Semana 7]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s7">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
 
-  </div>
-</section>
+      <article class="card" id="s8">
+        <span class="badge">Semana 8</span>
+        <h3>Semana 8</h3>
+        <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
+        <img data-src="img/semana8.jpg" alt="Imagen Semana 8">
+        <p>[Texto de cierre de la bitácora]</p>
+        <div class="actions">
+          <a class="btn primary" href="#s8">Ver semana</a>
+          <a class="btn" href="#" onclick="return false;">Adjuntar evidencia</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</div>
 
 <footer>
-  Proyecto académico · Universidad de las Artes
+  Proyecto académico del segundo semestre · Universidad de las Artes · Laboratorio Interdisciplinar
 </footer>
 
 <script>
-  const container = document.getElementById("cards");
-  const links = document.querySelectorAll("nav a");
-
-  links.forEach(link=>{
-    link.addEventListener("click",e=>{
-      const id = link.getAttribute("href");
-      const card = document.querySelector(id);
-      if(!card) return;
-      e.preventDefault();
-
-      container.scrollTo({
-        left: card.offsetLeft - container.offsetLeft,
-        behavior:"smooth"
-      });
-
-      links.forEach(l=>l.classList.remove("active"));
-      link.classList.add("active");
-    });
+  // Muestra imágenes solo si hay ruta válida (evita huecos feos si no pones imagen)
+  document.querySelectorAll("img[data-src]").forEach(img => {
+    const src = (img.getAttribute("data-src") || "").trim();
+    if (src && !src.includes("[") && !src.includes("ruta-de-la-imagen")) {
+      img.src = src;
+      img.style.display = "block";
+    }
   });
 
-  // Iniciar mostrando el final
-  window.addEventListener("load",()=>{
-    container.scrollLeft = container.scrollWidth - container.clientWidth;
+  // Suaviza navegación al hacer clic en menú: centra la tarjeta si existe
+  const container = document.getElementById("cards");
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if (!el || !container) return;
+
+      // Evita salto brusco
+      e.preventDefault();
+
+      // Scroll horizontal hacia la tarjeta
+      const left = el.offsetLeft - 6; 
+      container.scrollTo({ left, behavior: 'smooth' });
+
+      // También actualiza URL hash
+      history.replaceState(null, "", id);
+    });
   });
 </script>
 
 </body>
 </html>
-
