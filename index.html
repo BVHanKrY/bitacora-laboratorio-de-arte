@@ -30,7 +30,6 @@
       color:var(--text);
       overflow-x:hidden;
 
-      /* Fondo ilustración + velo */
       background:
         linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
         url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
@@ -61,7 +60,6 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      flex-wrap: wrap;
     }
 
     .brand{
@@ -69,6 +67,7 @@
       flex-direction:column;
       gap:4px;
       line-height:1.1;
+      min-width: 220px;
     }
     .brand h1{
       font-size: 18px;
@@ -82,25 +81,100 @@
       color:var(--muted);
     }
 
-    .nav{
+    /* ====== HAMBURGER + MENU ====== */
+    .menu-wrap{
+      position: relative;
       display:flex;
-      gap:8px;
-      flex-wrap:wrap;
+      align-items:center;
       justify-content:flex-end;
+      gap:10px;
     }
-    .nav a{
-      text-decoration:none;
-      font-size:12px;
-      color: var(--text);
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(231,207,173,0.9);
-      background: rgba(255,250,242,0.55);
+
+    .hamburger{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.65);
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       transition: transform .12s ease, background .12s ease;
-      white-space:nowrap;
     }
-    .nav a:hover{
+    .hamburger:hover{
       transform: translateY(-1px);
+      background: rgba(255,250,242,0.90);
+    }
+    .hamburger:focus{
+      outline: 2px solid rgba(183,106,43,0.35);
+      outline-offset: 2px;
+    }
+
+    .burger-lines{
+      width: 18px;
+      height: 12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .burger-lines span{
+      display:block;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(47,47,47,0.80);
+    }
+
+    .dropdown{
+      position: absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      width: min(260px, 80vw);
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.92);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+      display:none;
+      z-index: 999;
+    }
+    .dropdown.open{ display:block; }
+
+    .dropdown h4{
+      margin: 6px 8px 8px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight:700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .dropdown a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      text-decoration:none;
+      font-size: 13px;
+      color: var(--text);
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,207,173,0.75);
+      background: rgba(255,255,255,0.70);
+      transition: transform .12s ease, background .12s ease;
+      margin: 6px 0;
+    }
+    .dropdown a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.95);
+    }
+    .dropdown a .tag{
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid rgba(231,207,173,0.9);
       background: rgba(255,250,242,0.85);
     }
 
@@ -168,7 +242,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* scrollbar */
     .container::-webkit-scrollbar{ height: 10px; }
     .container::-webkit-scrollbar-thumb{
       background: rgba(183,106,43,0.35);
@@ -181,8 +254,8 @@
 
     /* ======= TARJETAS MISMO TAMAÑO ======= */
     .card{
-      width: 360px;      /* mismo ancho */
-      height: 260px;     /* mismo alto */
+      width: 360px;
+      height: 260px;
       flex: 0 0 auto;
       scroll-snap-align: start;
 
@@ -263,10 +336,9 @@
       margin: 6px 0 10px;
       border: 1px solid rgba(231,207,173,0.9);
       background: rgba(255,250,242,0.5);
-      display:none; /* se activa por JS si hay src válido */
+      display:none;
     }
 
-    /* texto con límite para que todas queden iguales */
     .card p{
       font-size: 14px;
       line-height: 1.5;
@@ -283,7 +355,7 @@
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      margin-top:auto; /* empuja botones abajo */
+      margin-top:auto;
     }
 
     .btn{
@@ -335,7 +407,6 @@
     }
     .side button:hover{ background:#fff; }
 
-    /* Botón flotante + (fuera del aside) */
     .fab{
       position: fixed;
       right: 26px;
@@ -368,9 +439,8 @@
 
     @media (max-width: 520px){
       .brand h1{ font-size:16px; }
-      .nav a{ font-size:11px; padding:7px 9px; }
-      .card{ width: 85vw; height: 280px; }
       .side{ top: 120px; right: 10px; }
+      .card{ width: 85vw; height: 280px; }
     }
   </style>
 </head>
@@ -393,16 +463,32 @@
         <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
       </div>
 
-      <nav class="nav" aria-label="Navegación por semanas">
-        <a href="#s1">Semana 1</a>
-        <a href="#s2">Semana 2</a>
-        <a href="#s3">Semana 3</a>
-        <a href="#s4">Semana 4</a>
-        <a href="#s5">Semana 5</a>
-        <a href="#s6">Semana 6</a>
-        <a href="#s7">Semana 7</a>
-        <a href="#s8">Semana 8</a>
-      </nav>
+      <!-- HAMBURGUESA (arriba derecha) -->
+      <div class="menu-wrap">
+        <button
+          class="hamburger"
+          id="hamburger"
+          aria-label="Abrir menú de semanas"
+          aria-controls="weeksMenu"
+          aria-expanded="false"
+        >
+          <span class="burger-lines" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+        </button>
+
+        <div class="dropdown" id="weeksMenu" role="menu" aria-label="Semanas">
+          <h4>Semanas</h4>
+          <a href="#s1" role="menuitem">Semana 1 <span class="tag">S1</span></a>
+          <a href="#s2" role="menuitem">Semana 2 <span class="tag">S2</span></a>
+          <a href="#s3" role="menuitem">Semana 3 <span class="tag">S3</span></a>
+          <a href="#s4" role="menuitem">Semana 4 <span class="tag">S4</span></a>
+          <a href="#s5" role="menuitem">Semana 5 <span class="tag">S5</span></a>
+          <a href="#s6" role="menuitem">Semana 6 <span class="tag">S6</span></a>
+          <a href="#s7" role="menuitem">Semana 7 <span class="tag">S7</span></a>
+          <a href="#s8" role="menuitem">Semana 8 <span class="tag">S8</span></a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -551,19 +637,55 @@
       }
     });
 
-    // Navegación del menú: scroll horizontal hacia la tarjeta
+    // ====== Scroll horizontal hacia la tarjeta (reutilizable) ======
     const container = document.getElementById("cards");
-    document.querySelectorAll('.nav a').forEach(a => {
-      a.addEventListener('click', (e) => {
-        const id = a.getAttribute('href');
-        const el = document.querySelector(id);
-        if (!el || !container) return;
+    function scrollToCard(id){
+      const el = document.querySelector(id);
+      if (!el || !container) return;
+      const left = el.offsetLeft - 12;
+      container.scrollTo({ left, behavior: 'smooth' });
+      history.replaceState(null, "", id);
+    }
 
+    // ====== Hamburguesa desplegable ======
+    const hamburger = document.getElementById("hamburger");
+    const dropdown = document.getElementById("weeksMenu");
+
+    function setMenu(open){
+      dropdown.classList.toggle("open", open);
+      hamburger.setAttribute("aria-expanded", String(open));
+    }
+
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = !dropdown.classList.contains("open");
+      setMenu(open);
+    });
+
+    // Click en una semana => scroll + cerrar menú
+    dropdown.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        if (!id) return;
         e.preventDefault();
-        const left = el.offsetLeft - 12;
-        container.scrollTo({ left, behavior: 'smooth' });
-        history.replaceState(null, "", id);
+        scrollToCard(id);
+        setMenu(false);
       });
+    });
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", () => setMenu(false));
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
+    });
+
+    // Si entras con hash en URL, mueve al cargar
+    window.addEventListener("load", () => {
+      if (location.hash && document.querySelector(location.hash)) {
+        scrollToCard(location.hash);
+      }
     });
   </script>
 
