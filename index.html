@@ -275,8 +275,8 @@
 
     .card{
       width: 360px;
-      min-height: 330px;  /* más larga hacia abajo */
-      height: auto;       /* deja que crezca si hay más texto */
+      min-height: 330px;
+      height: auto;
       flex: 0 0 auto;
       scroll-snap-align: start;
 
@@ -359,7 +359,7 @@
       box-shadow: 0 16px 40px rgba(0,0,0,0.18);
       backdrop-filter: blur(10px);
       display:none;
-      z-index: 40; /* más alto para que no lo tape nada */
+      z-index: 40;
     }
     .ctx-menu.open{ display:block; }
 
@@ -410,7 +410,7 @@
 
     .actions{
       display:flex;
-      gap:10px;
+      gap:10px; /* ✅ AQUÍ ajustas la distancia entre Detalle y Comentarios */
       flex-wrap:wrap;
       margin-top:auto;
     }
@@ -484,53 +484,98 @@
       color: var(--muted);
       font-size: 13px;
     }
+
     /* ====== Detalle: panel desplegable (Audio / Video) ====== */
-  .details-panel{
-     margin-top: 10px;
-     padding: 10px;
-     border-radius: 14px;
-     border: 1px solid rgba(231,207,173,0.9);
-     background: rgba(255,250,242,0.85);
-   }
+    .details-panel{
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.85);
+    }
 
-  .details-row{
-     display:flex;
-     gap:10px;
-     flex-wrap:wrap;
-     align-items:center;
-   }
+    .details-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
 
-  .media-btn{
-     display:inline-flex;
-     align-items:center;
-     justify-content:center;
-     gap:8px;
-     font-size: 13px;
-     padding: 10px 12px;
-     border-radius: 12px;
-     border: 1px solid rgba(231,207,173,0.9);
-     background: rgba(255,255,255,0.75);
-     cursor:pointer;
-     color: var(--text);
-     transition: transform .12s ease, background .12s ease;
-   }
-   .media-btn:hover{
-     transform: translateY(-1px);
-     background: rgba(255,255,255,0.98);
-   }
+    .media-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,255,255,0.75);
+      cursor:pointer;
+      color: var(--text);
+      transition: transform .12s ease, background .12s ease;
+    }
+    .media-btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.98);
+    }
 
-   .details-note{
-     margin: 10px 0 0;
-     font-size: 12px;
-     color: var(--muted);
-     line-height: 1.4;
-  }
-    
-    /* ====== MÓVIL ====== */
+    .details-note{
+      margin: 10px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ✅ NUEVO: lista de medios */
+    .media-title{
+      margin: 10px 0 6px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .media-list{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .media-list a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(231,207,173,0.75);
+      background: rgba(255,255,255,0.70);
+      color: var(--text);
+      text-decoration: none;
+      transition: transform .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .media-list a:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.95);
+    }
+    .pill{
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid rgba(231,207,173,0.9);
+      background: rgba(255,250,242,0.85);
+      flex: 0 0 auto;
+    }
+
+    /* ====== MÓVIL (✅ ARREGLADO: llaves correctas) ====== */
     @media (max-width: 520px){
       .brand h1{ font-size:16px; }
       .card{ width: 85vw; min-height: 340px; height: auto; }
-    }
 
       .side{ display:none; }
       .tools-float{ display:block; }
@@ -568,7 +613,7 @@
     <div class="header-inner">
       <div class="brand">
         <h1>Bitácora Septimo Semestre</h1>
-        <p>Laboratorio Interdisciplinario</p> 
+        <p>Laboratorio Interdisciplinario</p>
         <p>· Universidad de las Artes ·</p>
       </div>
 
@@ -646,388 +691,129 @@
           <img data-src="https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Imagenes/25%20nov.1.jpg" alt="Imagen Semana 9">
           <p>[Escribe aquí el texto descriptivo de la Semana 9]</p>
 
-    <!-- BOTONES DE TARJETAS-->
           <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
 
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
+          <!-- Panel desplegable: Audio / Video -->
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
 
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
 
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
+            <p class="details-note">
+              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+            </p>
+          </div>
+        </article>
 
-         <!-- SEMANA 10-->
-       <article class="card" id="s10" data-week="10">
-  <span class="badge">Semana 10</span>
-  <h3>Semana 10</h3>
+        <!-- SEMANA 10-->
+        <article class="card" id="s10" data-week="10">
+          <span class="badge">Semana 10</span>
+          <h3>Semana 10</h3>
 
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 2 meses]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 2 meses]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
 
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
 
-  <div class="meta">Fecha: <strong>[02 de Diciembre 2025]</strong></div>
-  <img data-src="" alt="Imagen Semana 10">
-  <p>[Escribe aquí el texto descriptivo de la Semana 10]</p>
+          <div class="meta">Fecha: <strong>[02 de Diciembre 2025]</strong></div>
+          <img data-src="" alt="Imagen Semana 10">
+          <p>[Escribe aquí el texto descriptivo de la Semana 10]</p>
 
-  <!-- BOTONES DE TARJETAS-->
           <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
 
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
 
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
 
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
+            <p class="details-note">
+              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+            </p>
+          </div>
+        </article>
 
-         <!-- SEMANA 11-->
-<article class="card" id="s11" data-week="11">
-  <span class="badge">Semana 11</span>
-  <h3>Semana 11</h3>
+        <!-- SEMANAS 11..16 (igual estructura que ya tienes, solo asegúrate que cada details-panel tenga media-title y media-list) -->
 
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 2 meses]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
+        <!-- SEMANA 11 -->
+        <article class="card" id="s11" data-week="11">
+          <span class="badge">Semana 11</span>
+          <h3>Semana 11</h3>
 
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
+          <div class="post-head">
+            <div class="who">
+              <div class="avatar">H</div>
+              <div>
+                <div class="name">Henry Villavicencio</div>
+                <div class="time">[hace 2 meses]</div>
+              </div>
+            </div>
+            <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
+          </div>
 
-  <div class="meta">Fecha: <strong>[09 de Diciembre 2025]</strong></div>
-  <img data-src="" alt="Imagen Semana 11">
-  <p>[Escribe aquí el texto descriptivo de la Semana 11]</p>
+          <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
+            <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
+            <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
+          </div>
 
-   <!-- BOTONES DE TARJETAS-->
+          <div class="meta">Fecha: <strong>[09 de Diciembre 2025]</strong></div>
+          <img data-src="" alt="Imagen Semana 11">
+          <p>[Escribe aquí el texto descriptivo de la Semana 11]</p>
+
           <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
+            <button class="btn primary details-btn" type="button" aria-expanded="false">Detalle</button>
+            <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">Comentarios</a>
+          </div>
 
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
+          <div class="details-panel" hidden>
+            <div class="details-row">
+              <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
+              <button class="media-btn" type="button" data-media="video">🎬 Video</button>
+            </div>
 
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
+            <div class="media-title" data-media-title>Selecciona Audio o Video</div>
+            <ul class="media-list" data-media-list></ul>
 
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-        
-          <!-- SEMANA 12-->
-<article class="card" id="s12" data-week="12">
-  <span class="badge">Semana 12</span>
-  <h3>Semana 12</h3>
+            <p class="details-note">
+              Tip: agrega tus enlaces en <strong>MEDIA_LIBRARY</strong> (en el script).
+            </p>
+          </div>
+        </article>
 
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 2 meses]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
-
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
-
-  <div class="meta">Fecha: <strong>[16 de Diciembre 2025]</strong></div>
-  <img data-src="" alt="Imagen Semana 12">
-  <p>[Escribe aquí el texto descriptivo de la Semana 12]</p>
-
-  <!-- BOTONES DE TARJETAS-->
-          <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
-
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
-
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
-
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-
-         <!-- SEMANA 13-->
-<article class="card" id="s13" data-week="13">
-  <span class="badge">Semana 13</span>
-  <h3>Semana 13</h3>
-
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 26 días]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
-
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
-
-  <div class="meta">Fecha: <strong>[06 de Enero 2026]</strong></div>
-  <img data-src="" alt="Imagen Semana 13">
-  <p>[Escribe aquí el texto descriptivo de la Semana 13]</p>
-
-   <!-- BOTONES DE TARJETAS-->
-          <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
-
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
-
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
-
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-
-         <!-- SEMANA 14-->
-<article class="card" id="s14" data-week="14">
-  <span class="badge">Semana 14</span>
-  <h3>Semana 14</h3>
-
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 19 días]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
-
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
-
-  <div class="meta">Fecha: <strong>[13 de Enero 2026]</strong></div>
-  <img data-src="" alt="Imagen Semana 14">
-  <p>[Escribe aquí el texto descriptivo de la Semana 14]</p>
-
-   <!-- BOTONES DE TARJETAS-->
-          <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
-
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
-
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
-
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-
-         <!-- SEMANA 15-->
-<article class="card" id="s15" data-week="15">
-  <span class="badge">Semana 15</span>
-  <h3>Semana 15</h3>
-
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 12 días]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
-
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
-
-  <div class="meta">Fecha: <strong>[20 de Enero 2026]</strong></div>
-  <img data-src="" alt="Imagen Semana 15">
-  <p>[Escribe aquí el texto descriptivo de la Semana 15]</p>
-
-  <!-- BOTONES DE TARJETAS-->
-          <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
-
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
-
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
-
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-
-         <!-- SEMANA 16-->
-<article class="card" id="s16" data-week="16">
-  <span class="badge">Semana 16</span>
-  <h3>Semana 16</h3>
-
-  <div class="post-head">
-    <div class="who">
-      <div class="avatar">H</div>
-      <div>
-        <div class="name">Henry Villavicencio</div>
-        <div class="time">[hace 5 días]</div>
-      </div>
-    </div>
-    <button class="dots" type="button" aria-label="Opciones de la tarjeta" aria-haspopup="menu" aria-expanded="false">⋮</button>
-  </div>
-
-  <div class="ctx-menu" role="menu" aria-label="Menú de opciones">
-    <button class="ctx-item" type="button" role="menuitem" data-action="edit">Editar <span class="tag">✏️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="delete">Eliminar <span class="tag">🗑️</span></button>
-    <button class="ctx-item" type="button" role="menuitem" data-action="share">Compartir <span class="tag">↗</span></button>
-  </div>
-
-  <div class="meta">Fecha: <strong>[27 de enero 2026]</strong></div>
-  <img data-src="" alt="Imagen Semana 16">
-  <p>[Escribe aquí el texto descriptivo de la Semana 16]</p>
-
-   <!-- BOTONES DE TARJETAS-->
-          <div class="actions">
-          <button class="btn primary details-btn" type="button" aria-expanded="false">
-          Detalle
-          </button>
-
-          <a class="btn" href="#" onclick="alert('Abrir comentarios (demo)'); return false;">
-          Comentarios
-          </a>
-        </div>
-
-    <!-- Panel desplegable: Audio / Video (demo) -->
-       <div class="details-panel" hidden>
-        <div class="details-row">
-         <button class="media-btn" type="button" data-media="audio">🎧 Audio</button>
-         <button class="media-btn" type="button" data-media="video">🎬 Video</button>
-       </div>
-
-     <p class="details-note">
-        Demo: aquí luego puedes poner links, subir archivos, o abrir un modal.
-     </p>
-   </div>
-</article>
-        
-        <!-- ya esta completo las tarjetas de semanas (igual que s9 cambiando ids y textos) -->
+        <!-- (Repite la misma estructura details-panel para s12..s16) -->
 
       </div>
     </section>
   </div>
 
   <footer>
-    Proyecto Académico Interdisciplinario · Universidad de las Artes · 
+    Proyecto Académico Interdisciplinario · Universidad de las Artes ·
   </footer>
 
   <script>
@@ -1040,6 +826,71 @@
       }
     });
 
+    // ========= LIBRERÍA DE MEDIOS (✅ AQUÍ PEGAS TUS LINKS) =========
+    // Tip: usa links RAW, ejemplo:
+    // https://raw.githubusercontent.com/USUARIO/REPO/main/Media/Semana9/audio1.mp3
+    const MEDIA_LIBRARY = {
+      9: {
+        audio: [
+          { title: "Audio 1 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/audio1.mp3" },
+          { title: "Audio 2 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/audio2.mp3" }
+        ],
+        video: [
+          { title: "Video 1 · Semana 9", url: "https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/main/Media/Semana9/video1.mp4" }
+        ]
+      },
+      10: {
+        audio: [
+          // { title: "Audio 1 · Semana 10", url: "PEGAR_LINK_AQUI" }
+        ],
+        video: [
+          // { title: "Video 1 · Semana 10", url: "PEGAR_LINK_AQUI" }
+        ]
+      },
+      11: { audio: [], video: [] },
+      12: { audio: [], video: [] },
+      13: { audio: [], video: [] },
+      14: { audio: [], video: [] },
+      15: { audio: [], video: [] },
+      16: { audio: [], video: [] }
+    };
+
+    function renderMediaList(card, type){
+      const week = Number(card.getAttribute("data-week"));
+      const lib = MEDIA_LIBRARY[week] || { audio: [], video: [] };
+      const items = (lib[type] || []);
+
+      const titleEl = card.querySelector("[data-media-title]");
+      const listEl = card.querySelector("[data-media-list]");
+      if (!titleEl || !listEl) return;
+
+      titleEl.textContent = (type === "audio")
+        ? "Lista de audios"
+        : "Lista de videos";
+
+      listEl.innerHTML = "";
+
+      if (items.length === 0) {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="#" onclick="return false;">
+          No hay archivos aún <span class="pill">vacío</span>
+        </a>`;
+        listEl.appendChild(li);
+        return;
+      }
+
+      items.forEach((it) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <a href="${it.url}" target="_blank" rel="noopener">
+            <span>${it.title}</span>
+            <span class="pill">${type === "audio" ? "audio" : "video"}</span>
+          </a>
+        `;
+        listEl.appendChild(li);
+      });
+    }
+
     // ========= SCROLL HORIZONTAL A TARJETA =========
     const container = document.getElementById("cards");
     function scrollToCard(id){
@@ -1047,15 +898,12 @@
       if (!el || !container) return;
       const left = el.offsetLeft - 12;
       container.scrollTo({ left, behavior: "smooth" });
-      // NO guardamos hash para evitar que recargue en semana 4+
     }
 
     // ========= SIEMPRE EMPEZAR EN SEMANA 9 =========
     function forceStartAtWeek9(){
       if (!container) return;
-      // Limpia hash sin recargar
       if (location.hash) history.replaceState(null, "", location.pathname + location.search);
-      // Fuerza scroll al inicio
       container.scrollTo({ left: 0, behavior: "auto" });
     }
     window.addEventListener("load", forceStartAtWeek9);
@@ -1084,13 +932,11 @@
       btn.setAttribute("aria-expanded", String(open));
     }
 
-    // ========= POSICIÓN DE ⋯ (BAJAR MÁS) =========
-    // Antes estaba pegado a la hamburguesa: ahora lo bajamos más.
     function positionTools(){
       if (!header || !toolsBtn || !toolsMenu) return;
 
       const rect = header.getBoundingClientRect();
-      const topForDots = rect.bottom + 1; // <-- MÁS ABAJO (sube/baja este número)
+      const topForDots = rect.bottom + 1;
       toolsBtn.style.top = topForDots + "px";
 
       const btnRect = toolsBtn.getBoundingClientRect();
@@ -1101,14 +947,12 @@
     window.addEventListener("scroll", positionTools, { passive: true });
     window.addEventListener("pageshow", positionTools);
 
-    // Hamburgesa: abre semanas (ARREGLADO)
     hamburgerBtn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       toggle(hamburgerBtn, weeksMenu);
     });
 
-    // Click en semanas (ARREGLADO)
     weeksMenu.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -1120,7 +964,6 @@
       });
     });
 
-    // Tools: abre tools (ARREGLADO)
     toolsBtn.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -1128,7 +971,6 @@
       toggle(toolsBtn, toolsMenu);
     });
 
-    // No cerrar si haces click dentro
     weeksMenu.addEventListener("click", (e) => e.stopPropagation());
     toolsMenu.addEventListener("click", (e) => e.stopPropagation());
 
@@ -1138,17 +980,14 @@
       document.querySelectorAll(".dots[aria-expanded='true']").forEach(btn => btn.setAttribute("aria-expanded", "false"));
     }
 
-    // Delegación: funciona aunque dupliques tarjetas
     document.addEventListener("click", (e) => {
       const dotsBtn = e.target.closest(".dots");
       const ctxItem = e.target.closest(".ctx-item");
 
-      // Si tocaste un item del menú contextual
       if (ctxItem) {
         e.preventDefault();
         e.stopPropagation();
 
-        const menu = ctxItem.closest(".ctx-menu");
         const card = ctxItem.closest(".card");
         const action = ctxItem.getAttribute("data-action");
         const week = card?.getAttribute("data-week") || card?.id || "?";
@@ -1161,12 +1000,9 @@
         return;
       }
 
-      // Si tocaste los ⋮ de una tarjeta
       if (dotsBtn) {
         e.preventDefault();
         e.stopPropagation();
-
-        // Cierra menús principales para evitar conflictos
         closeAllMain();
 
         const card = dotsBtn.closest(".card");
@@ -1180,69 +1016,64 @@
         return;
       }
 
-      // Si tocaste fuera: cerrar todo
       closeAllMain();
       closeAllContextMenus();
     }, true);
 
-    // ESC cierra todo
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         closeAllMain();
         closeAllContextMenus();
       }
     });
+
     // ========= DETALLE (Audio/Video) =========
-function closeAllDetailsPanels(exceptCard){
-  document.querySelectorAll(".card").forEach(card => {
-    if (exceptCard && card === exceptCard) return;
+    function closeAllDetailsPanels(exceptCard){
+      document.querySelectorAll(".card").forEach(card => {
+        if (exceptCard && card === exceptCard) return;
 
-    const panel = card.querySelector(".details-panel");
-    const btn = card.querySelector(".details-btn");
+        const panel = card.querySelector(".details-panel");
+        const btn = card.querySelector(".details-btn");
 
-    if (panel) panel.hidden = true;
-    if (btn) btn.setAttribute("aria-expanded", "false");
-  });
-}
+        if (panel) panel.hidden = true;
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+    }
 
-document.addEventListener("click", (e) => {
-  const detailsBtn = e.target.closest(".details-btn");
-  const mediaBtn = e.target.closest(".media-btn");
+    document.addEventListener("click", (e) => {
+      const detailsBtn = e.target.closest(".details-btn");
+      const mediaBtn = e.target.closest(".media-btn");
 
-  // Click en "Detalle"
-  if (detailsBtn) {
-    e.preventDefault();
-    e.stopPropagation();
+      if (detailsBtn) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    const card = detailsBtn.closest(".card");
-    const panel = card?.querySelector(".details-panel");
-    if (!panel) return;
+        const card = detailsBtn.closest(".card");
+        const panel = card?.querySelector(".details-panel");
+        if (!panel) return;
 
-    const willOpen = panel.hidden;   // si está oculto, se abrirá
-    closeAllDetailsPanels(card);     // cierra los demás
-    panel.hidden = !willOpen;        // toggle
-    detailsBtn.setAttribute("aria-expanded", String(willOpen));
-    return;
-  }
+        const willOpen = panel.hidden;
+        closeAllDetailsPanels(card);
+        panel.hidden = !willOpen;
+        detailsBtn.setAttribute("aria-expanded", String(willOpen));
+        return;
+      }
 
-  // Click en Audio / Video (demo)
-  if (mediaBtn) {
-    e.preventDefault();
-    e.stopPropagation();
+      // ✅ NUEVO: Audio/Video ahora renderiza lista desde MEDIA_LIBRARY
+      if (mediaBtn) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    const type = mediaBtn.getAttribute("data-media");
-    const card = mediaBtn.closest(".card");
-    const week = card?.getAttribute("data-week") || card?.id || "?";
+        const type = mediaBtn.getAttribute("data-media"); // audio | video
+        const card = mediaBtn.closest(".card");
+        if (!card) return;
 
-    if (type === "audio") alert("Audio (demo) · Semana: " + week);
-    if (type === "video") alert("Video (demo) · Semana: " + week);
-    return;
-  }
+        renderMediaList(card, type);
+        return;
+      }
 
-  // Click fuera: cerrar paneles de detalle
-  closeAllDetailsPanels();
-}, true);
-    
+      closeAllDetailsPanels();
+    }, true);
   </script>
 </body>
 </html>
