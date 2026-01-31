@@ -30,13 +30,16 @@
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family:'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 10% 5%, var(--bg2), transparent 60%),
-                  radial-gradient(900px 600px at 90% 20%, #fde9cf, transparent 60%),
-                  linear-gradient(to bottom right, var(--bg1), var(--bg2));
-      color:var(--text);
+      font-family:'Roboto', sans-serif;
+      color:#2f2f2f;
+
+  /* Imagen tipo ilustración + velo */
+      background:
+      linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
+      url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png") center/cover fixed no-repeat;
+
       overflow-x:hidden;
-    }
+   }
 
     /* Layout */
     .page{
@@ -160,13 +163,13 @@
     }
 
     .container{
-      display:flex;
-      gap: 16px;
-      overflow-x:auto;
-      padding: 10px 6px 14px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
+     display:grid;
+     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+     gap: 18px;
+     padding: 18px 6px 14px;
+     align-items:start;
+   }
+
 
     /* nicer scrollbar (supports chromium) */
     .container::-webkit-scrollbar{ height: 10px; }
@@ -180,27 +183,20 @@
     }
 
     .card{
-      min-width: 320px;
-      max-width: 320px;
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      padding: 14px;
-      flex-shrink:0;
-      scroll-snap-align: start;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      box-shadow: var(--shadow2);
-      transition: transform .15s ease, box-shadow .15s ease;
-      position:relative;
-      overflow:hidden;
+     background: rgba(255, 255, 255, 0.92);
+     border: 1px solid rgba(231,207,173,0.8);
+     border-radius: 18px;
+     padding: 14px;
+     box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+     position:relative;
+     overflow:hidden;
     }
 
     .card:hover{
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
+     transform: translateY(-2px);
+     box-shadow: 0 18px 40px rgba(0,0,0,0.16);
     }
+
 
     .badge{
       position:absolute;
@@ -301,11 +297,88 @@
       .nav a{ font-size:11px; padding:7px 9px; }
       .card{ min-width: 85vw; max-width: 85vw; }
     }
+      .post-head{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-bottom:10px;
+   }
+     .who{ display:flex; gap:10px; align-items:center; }
+     .avatar{
+       width:36px; height:36px;
+       border-radius:50%;
+       background: #2a2a2a;
+       color:#fff;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       font-weight:700;
+       font-size:13px;
+   }
+    .name{ font-weight:700; font-size:13px; }
+    .time{ font-size:12px; color:#6b6b6b; margin-top:2px; }
+    .dots{
+      border:none;
+      background:transparent;
+      font-size:20px;
+      cursor:pointer;
+      color:#6b6b6b;
+   }
+    .side{
+      position: fixed;
+      right: 16px;
+      top: 120px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      padding:10px;
+      border-radius: 999px;
+      background: rgba(255,250,242,0.7);
+      border: 1px solid rgba(231,207,173,0.9);
+      backdrop-filter: blur(10px);
+      z-index: 80;
+ }
+.side button{
+     width:42px; height:42px;
+     border-radius: 14px;
+     border: 1px solid rgba(231,207,173,0.7);
+     background: rgba(255,255,255,0.8);
+     cursor:pointer;
+     font-size:18px;
+ }
+.side button:hover{
+    background:#fff;
+ }
+    .fab{
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border:none;
+    background: #1f8f7a;
+    color:#fff;
+    font-size: 34px;
+    cursor:pointer;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    z-index: 90;
+}
+.fab:hover{
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
   </style>
 </head>
-
+  
 <body>
-
+    <aside class="side">
+     <button title="Buscar">🔍</button>
+     <button title="Compartir">↗</button>
+     <button title="Notificaciones">🔔</button>
+     <button title="Ajustes">⚙</button>
+    <button class="fab" title="Nuevo post">+</button>
+   </aside>
 <header>
   <div class="header-inner">
     <div class="brand">
@@ -349,6 +422,16 @@
       <article class="card" id="s1">
         <span class="badge">Semana 1</span>
         <h3>Semana 1</h3>
+          <div class="post-head">
+          <div class="who">
+          <div class="avatar">BV</div>
+          <div>
+           <div class="name">Henry%Villavicencio</div>
+            <div class="time">hace 4 días</div>
+          </div>
+        </div>
+        <button class="dots" aria-label="Más opciones">⋮</button>
+      </div>
         <div class="meta">Fecha: <strong>[Inserta fecha aquí]</strong></div>
         <img data-src="" alt="Imagen Semana 1">
         <p>[Escribe aquí el texto descriptivo de la Semana 1]</p>
