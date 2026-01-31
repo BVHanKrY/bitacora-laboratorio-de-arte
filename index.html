@@ -30,7 +30,6 @@
       color:var(--text);
       overflow-x:hidden;
 
-      /* Fondo ilustración + velo */
       background:
         linear-gradient(rgba(255,250,242,0.55), rgba(255,250,242,0.55)),
         url("https://raw.githubusercontent.com/BVHanKrY/bitacora-laboratorio-de-arte/refs/heads/main/Captura%20de%20pantalla%202026-01-30%20223710.png")
@@ -82,16 +81,16 @@
       color:var(--muted);
     }
 
-    /* ====== HAMBURGER + MENU SEMANAS ====== */
-    .menu-wrap{
+    /* ====== MENÚS (semanas + tools) ====== */
+    .menu-stack{
       position: relative;
       display:flex;
-      align-items:center;
-      justify-content:flex-end;
+      flex-direction:column;
+      align-items:flex-end;
       gap:10px;
     }
 
-    .hamburger{
+    .iconbtn{
       width: 44px;
       height: 44px;
       border-radius: 14px;
@@ -103,15 +102,16 @@
       justify-content:center;
       transition: transform .12s ease, background .12s ease;
     }
-    .hamburger:hover{
+    .iconbtn:hover{
       transform: translateY(-1px);
       background: rgba(255,250,242,0.90);
     }
-    .hamburger:focus{
+    .iconbtn:focus{
       outline: 2px solid rgba(183,106,43,0.35);
       outline-offset: 2px;
     }
 
+    /* Icono hamburguesa */
     .burger-lines{
       width: 18px;
       height: 12px;
@@ -124,6 +124,15 @@
       height: 2px;
       border-radius: 999px;
       background: rgba(47,47,47,0.80);
+    }
+
+    /* Icono tools minimalista */
+    .dots-icon{
+      font-size: 22px;
+      line-height: 1;
+      color: rgba(47,47,47,0.80);
+      transform: translateY(-1px);
+      user-select:none;
     }
 
     .dropdown{
@@ -151,7 +160,8 @@
       text-transform: uppercase;
     }
 
-    .dropdown a{
+    .dropdown a, .dropdown button{
+      width:100%;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -165,12 +175,13 @@
       background: rgba(255,255,255,0.70);
       transition: transform .12s ease, background .12s ease;
       margin: 6px 0;
+      cursor:pointer;
     }
-    .dropdown a:hover{
+    .dropdown a:hover, .dropdown button:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,0.95);
     }
-    .dropdown a .tag{
+    .dropdown .tag{
       font-size: 11px;
       padding: 4px 8px;
       border-radius: 999px;
@@ -226,10 +237,7 @@
     }
 
     /* ======= CONTENEDOR HORIZONTAL (SCROLL) ======= */
-    .cards-wrap{
-      margin-top: 18px;
-      padding: 10px 0 6px;
-    }
+    .cards-wrap{ margin-top: 18px; padding: 10px 0 6px; }
 
     .container{
       display:flex;
@@ -237,13 +245,11 @@
       overflow-x: auto;
       padding: 18px 6px 18px;
       align-items: stretch;
-
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
     }
 
-    /* scrollbar */
     .container::-webkit-scrollbar{ height: 10px; }
     .container::-webkit-scrollbar-thumb{
       background: rgba(183,106,43,0.35);
@@ -254,7 +260,7 @@
       border-radius: 999px;
     }
 
-    /* ======= TARJETAS MISMO TAMAÑO ======= */
+    /* ======= TARJETAS ======= */
     .card{
       width: 360px;
       height: 260px;
@@ -384,7 +390,7 @@
       color: #4a2a14;
     }
 
-    /* Panel lateral */
+    /* Panel lateral (SOLO desktop/tablet) */
     .side{
       position: fixed;
       right: 16px;
@@ -408,49 +414,6 @@
       font-size:18px;
     }
     .side button:hover{ background:#fff; }
-
-    /* ===== Side nav desplegable SOLO en móvil ===== */
-    .side-toggle{
-      display:none; /* por defecto oculto (desktop) */
-    }
-    .side-items{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-
-    @media (max-width: 520px){
-      .brand h1{ font-size:16px; }
-      .card{ width: 85vw; height: 280px; }
-
-      .side{
-        top: 110px;
-        right: 10px;
-        padding: 10px;
-        border-radius: 18px;
-      }
-
-      .side-toggle{
-        display:inline-flex;
-        width:42px; height:42px;
-        border-radius: 14px;
-        border: 1px solid rgba(231,207,173,0.7);
-        background: rgba(255,255,255,0.9);
-        cursor:pointer;
-        font-size:18px;
-        align-items:center;
-        justify-content:center;
-      }
-
-      .side-items{
-        display:none;
-        margin-top:10px;
-      }
-
-      .side.open .side-items{
-        display:flex;
-      }
-    }
 
     /* Botón flotante + */
     .fab{
@@ -482,21 +445,35 @@
       color: var(--muted);
       font-size: 13px;
     }
+
+    /* ====== MÓVIL ====== */
+    @media (max-width: 520px){
+      .brand h1{ font-size:16px; }
+      .card{ width: 85vw; height: 280px; }
+
+      /* Oculta el panel lateral fijo para que no estorbe */
+      .side{ display:none; }
+
+      /* Ajuste visual: evita que el header se vea apretado */
+      .header-inner{ align-items:flex-start; }
+      .brand{ min-width: 0; }
+
+      /* Dropdowns caen bien alineados con el stack */
+      .dropdown{
+        width: min(260px, 88vw);
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Side nav: desktop normal; móvil desplegable -->
-  <aside class="side" id="sideNav">
-    <button class="side-toggle" id="sideToggle" title="Menú" aria-label="Abrir menú" aria-expanded="false">☰</button>
-
-    <div class="side-items" id="sideItems">
-      <button title="Buscar">🔍</button>
-      <button title="Compartir">↗</button>
-      <button title="Notificaciones">🔔</button>
-      <button title="Ajustes">⚙</button>
-    </div>
+  <!-- Panel lateral: se verá en desktop; en móvil se oculta por CSS -->
+  <aside class="side" aria-label="Herramientas rápidas (desktop)">
+    <button title="Buscar">🔍</button>
+    <button title="Compartir">↗</button>
+    <button title="Notificaciones">🔔</button>
+    <button title="Ajustes">⚙</button>
   </aside>
 
   <button class="fab" title="Nuevo post">+</button>
@@ -508,10 +485,11 @@
         <p>Laboratorio Interdisciplinar · Universidad de las Artes</p>
       </div>
 
-      <!-- Hamburguesa semanas (arriba derecha) -->
-      <div class="menu-wrap">
+      <!-- Stack: hamburguesa semanas + tools minimal debajo -->
+      <div class="menu-stack">
+        <!-- Semanas -->
         <button
-          class="hamburger"
+          class="iconbtn"
           id="hamburger"
           aria-label="Abrir menú de semanas"
           aria-controls="weeksMenu"
@@ -532,6 +510,25 @@
           <a href="#s6" role="menuitem">Semana 6 <span class="tag">S6</span></a>
           <a href="#s7" role="menuitem">Semana 7 <span class="tag">S7</span></a>
           <a href="#s8" role="menuitem">Semana 8 <span class="tag">S8</span></a>
+        </div>
+
+        <!-- Tools (minimal) -->
+        <button
+          class="iconbtn"
+          id="toolsBtn"
+          aria-label="Abrir herramientas"
+          aria-controls="toolsMenu"
+          aria-expanded="false"
+        >
+          <span class="dots-icon" aria-hidden="true">⋯</span>
+        </button>
+
+        <div class="dropdown" id="toolsMenu" role="menu" aria-label="Herramientas">
+          <h4>Herramientas</h4>
+          <button type="button" role="menuitem" onclick="alert('Buscar (demo)')">Buscar <span class="tag">🔍</span></button>
+          <button type="button" role="menuitem" onclick="alert('Compartir (demo)')">Compartir <span class="tag">↗</span></button>
+          <button type="button" role="menuitem" onclick="alert('Notificaciones (demo)')">Notificaciones <span class="tag">🔔</span></button>
+          <button type="button" role="menuitem" onclick="alert('Ajustes (demo)')">Ajustes <span class="tag">⚙</span></button>
         </div>
       </div>
     </div>
@@ -688,84 +685,74 @@
       const el = document.querySelector(id);
       if (!el || !container) return;
       const left = el.offsetLeft - 12;
-      container.scrollTo({ left, behavior: 'smooth' });
+      container.scrollTo({ left, behavior: "smooth" });
       history.replaceState(null, "", id);
     }
 
-    // ====== Hamburguesa semanas ======
-    const hamburger = document.getElementById("hamburger");
-    const dropdown = document.getElementById("weeksMenu");
-
-    function setMenu(open){
-      dropdown.classList.toggle("open", open);
-      hamburger.setAttribute("aria-expanded", String(open));
+    // ====== Dropdown control (reutilizable) ======
+    function toggleDropdown(btn, menu){
+      const open = !menu.classList.contains("open");
+      closeAllDropdowns();
+      menu.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", String(open));
     }
 
-    hamburger.addEventListener("click", (e) => {
-  e.stopPropagation();
-  const open = !dropdown.classList.contains("open");
-  setMenu(open);
-});
+    function closeDropdown(btn, menu){
+      menu.classList.remove("open");
+      btn.setAttribute("aria-expanded", "false");
+    }
 
-    dropdown.querySelectorAll('a[href^="#"]').forEach(a => {
+    function closeAllDropdowns(){
+      if (weeksMenu && hamburgerBtn) closeDropdown(hamburgerBtn, weeksMenu);
+      if (toolsMenu && toolsBtn) closeDropdown(toolsBtn, toolsMenu);
+    }
+
+    // ====== Semanas ======
+    const hamburgerBtn = document.getElementById("hamburger");
+    const weeksMenu = document.getElementById("weeksMenu");
+
+    hamburgerBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDropdown(hamburgerBtn, weeksMenu);
+    });
+
+    weeksMenu.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const id = a.getAttribute("href");
         if (!id) return;
         e.preventDefault();
         scrollToCard(id);
-        setMenu(false);
+        closeAllDropdowns();
       });
     });
 
-    document.addEventListener("click", () => setMenu(false));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setMenu(false);
+    // ====== Tools ======
+    const toolsBtn = document.getElementById("toolsBtn");
+    const toolsMenu = document.getElementById("toolsMenu");
+
+    toolsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleDropdown(toolsBtn, toolsMenu);
     });
 
+    // Evita que click dentro del dropdown lo cierre
+    weeksMenu.addEventListener("click", (e) => e.stopPropagation());
+    toolsMenu.addEventListener("click", (e) => e.stopPropagation());
+
+    // Cerrar al hacer click fuera
+    document.addEventListener("click", () => closeAllDropdowns());
+
+    // Cerrar con ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAllDropdowns();
+    });
+
+    // Si entras con hash
     window.addEventListener("load", () => {
       if (location.hash && document.querySelector(location.hash)) {
         scrollToCard(location.hash);
       }
     });
-
-    // ===== Side nav desplegable SOLO en móvil =====
-    const sideNav = document.getElementById("sideNav");
-    const sideToggle = document.getElementById("sideToggle");
-
-    function isMobile(){
-      return window.matchMedia("(max-width: 520px)").matches;
-    }
-
-    function closeSide(){
-      if (!sideNav) return;
-      sideNav.classList.remove("open");
-      if (sideToggle) sideToggle.setAttribute("aria-expanded", "false");
-    }
-
-    if (sideToggle && sideNav){
-      sideToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (!isMobile()) return;
-
-        const open = !sideNav.classList.contains("open");
-        sideNav.classList.toggle("open", open);
-        sideToggle.setAttribute("aria-expanded", String(open));
-      });
-
-      document.addEventListener("click", () => {
-        if (isMobile()) closeSide();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeSide();
-      });
-
-      window.addEventListener("resize", () => {
-        if (!isMobile()) {
-          closeSide();
-        }
-      });
-    }
   </script>
 
 </body>
